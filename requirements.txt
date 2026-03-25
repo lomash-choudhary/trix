@@ -1,12 +1,39 @@
-flask
-flask-cors
-python-dotenv
-langchain
-openai
-faiss-cpu
-PyPDF2
-gunicorn
-langchain_community
-tiktoken
-langchain-google-genai
-google-generativeai
+# Trix — Python Dependencies
+# ──────────────────────────────────────────────────────────
+# INSTALL COMMAND (run this in your terminal):
+#
+#   pip install -r requirements.txt
+#
+# If you get permission errors on Linux/Mac, try:
+#   pip install -r requirements.txt --user
+#
+# If you get "externally managed environment" error:
+#   pip install -r requirements.txt --break-system-packages
+#
+# ── Version notes ──────────────────────────────────────────
+# These versions are pinned because they are confirmed to
+# work together. Don't upgrade randomly — it breaks things.
+# ──────────────────────────────────────────────────────────
+
+# Web server
+flask==3.0.3
+flask-cors==4.0.1
+
+# Reads the .env file
+python-dotenv==1.0.1
+
+# LangChain — AI pipeline framework
+# All 4 of these must be installed together
+langchain==0.2.16
+langchain-core==0.2.38
+langchain-community==0.2.16
+langchain-text-splitters==0.2.4
+
+# Google Gemini integration for LangChain
+langchain-google-genai==1.0.10
+
+# Google's own AI library (langchain-google-genai depends on this)
+google-generativeai==0.7.2
+
+# FAISS — fast vector search (use faiss-cpu, NOT faiss-gpu unless you have a GPU)
+faiss-cpu==1.8.0

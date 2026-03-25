@@ -1,0 +1,165 @@
+# TRIX - Official Assistant for Trikon 3.0
+# Meerut Institute of Engineering and Technology (MIET)
+# Knowledge Base Document
+
+---
+
+## ABOUT TRIKON 3.0
+
+Trikon 3.0 is the flagship hackathon of Meerut Institute of Engineering and Technology (MIET), Meerut. It is a 2-day coding and innovation hackathon where students from across the country come together to build, create, and compete. The event is organized by the students of MIET and supported by the college faculty and technical clubs.
+
+---
+
+## EVENT DETAILS
+
+- **Event Name:** Trikon 3.0
+- **Type:** Hackathon (Tech Fest)
+- **Duration:** 2 Days
+- **Organized by:** Meerut Institute of Engineering and Technology (MIET), Meerut, Uttar Pradesh
+- **Venue:** MIET Campus, Meerut, Uttar Pradesh, India
+- **Official Assistant:** Trix
+
+---
+
+## SCHEDULE OVERVIEW
+
+### Day 1
+- 09:00 AM – Registration & Check-in
+- 10:00 AM – Inauguration Ceremony & Opening Remarks
+- 11:00 AM – Problem Statement Release & Team Briefing
+- 12:00 PM – Hacking Begins
+- 01:00 PM – Lunch Break
+- 06:00 PM – Mentorship Sessions (Round 1)
+- 08:00 PM – Dinner
+- 10:00 PM – Overnight hacking continues
+
+### Day 2
+- 08:00 AM – Breakfast
+- 10:00 AM – Mentorship Sessions (Round 2)
+- 12:00 PM – Submission Deadline
+- 01:00 PM – Lunch Break
+- 02:00 PM – Project Presentations & Judging
+- 05:00 PM – Results Announcement
+- 06:00 PM – Prize Distribution & Closing Ceremony
+
+---
+
+## PARTICIPATION
+
+- **Who can participate:** Engineering and technology students from any college across India
+- **Team Size:** 2 to 4 members per team
+- **Registration:** Online via the official Trikon 3.0 website
+- **Participation Fee:** [Update with actual fee or "Free"]
+- **Eligibility:** Open to undergraduate and postgraduate students
+
+---
+
+## TRACKS / THEMES
+
+Participants can choose from the following problem domains:
+
+1. **Artificial Intelligence & Machine Learning** – Build smart solutions using AI/ML
+2. **Web & App Development** – Create impactful web or mobile applications
+3. **Cybersecurity** – Solve real-world security challenges
+4. **IoT & Hardware** – Build embedded or hardware-integrated projects
+5. **Open Innovation** – Any innovative tech idea that doesn't fit the above tracks
+
+---
+
+## PRIZES & REWARDS
+
+- **1st Place:** ₹[Amount] + Trophy + Certificates + Goodies
+- **2nd Place:** ₹[Amount] + Trophy + Certificates + Goodies
+- **3rd Place:** ₹[Amount] + Trophy + Certificates + Goodies
+- **Special Awards:** Best UI/UX, Best Use of AI, Most Innovative Idea
+- All participants receive participation certificates.
+
+---
+
+## RULES & GUIDELINES
+
+1. All team members must be currently enrolled students.
+2. Teams must build their project from scratch during the hackathon — pre-built projects are not allowed.
+3. Use of open-source libraries and APIs is permitted.
+4. Projects must be original and must not plagiarize existing work.
+5. Each team must submit their code on GitHub and provide a working demo.
+6. Teams must present their project to the judges within the allotted time.
+7. Any form of misconduct will lead to disqualification.
+8. The decision of the judges is final.
+
+---
+
+## JUDGING CRITERIA
+
+Projects will be evaluated on the following parameters:
+
+- **Innovation & Creativity** (25%) – How unique and original is the idea?
+- **Technical Complexity** (25%) – How technically challenging and well-built is the solution?
+- **Impact & Usefulness** (20%) – Does the project solve a real problem?
+- **Presentation & Demo** (20%) – How well is the project explained and demonstrated?
+- **UI/UX Design** (10%) – Is the interface clean, intuitive, and user-friendly?
+
+---
+
+## MENTORS & JUDGES
+
+Trikon 3.0 features experienced mentors from industry and academia who will guide teams throughout the hackathon. Details of judges and mentors will be announced on the official website and social media channels.
+
+---
+
+## FACILITIES PROVIDED
+
+- 24/7 hacking space
+- Wi-Fi connectivity throughout the venue
+- Meals (lunch, dinner, breakfast) for all registered participants
+- Sleeping arrangements for outstation participants
+- Power backup and charging stations
+- Medical assistance on campus
+
+---
+
+## FREQUENTLY ASKED QUESTIONS (FAQ)
+
+**Q: Can I participate solo?**
+A: No, Trikon 3.0 requires teams of 2 to 4 members.
+
+**Q: Can team members be from different colleges?**
+A: Yes, cross-college teams are allowed and encouraged.
+
+**Q: Is there a registration fee?**
+A: Please check the official website for the latest registration fee details.
+
+**Q: What should I bring?**
+A: Bring your laptop, charger, college ID card, and any hardware components you may need for your project.
+
+**Q: Will food and accommodation be provided?**
+A: Yes, meals will be provided to all registered participants. Accommodation is available for outstation participants — please mention this during registration.
+
+**Q: Can we use cloud services or APIs?**
+A: Yes, you may use any publicly available APIs, cloud platforms, or open-source tools.
+
+**Q: What is the last date to register?**
+A: Registration deadlines will be announced on the official website. Register early to secure your spot!
+
+**Q: Who do I contact for queries?**
+A: Reach out to the Trikon 3.0 organizing team via the official email or social media handles listed on the website.
+
+---
+
+## CONTACT & SOCIAL MEDIA
+
+- **Website:** [Insert official website URL]
+- **Email:** [Insert official contact email]
+- **Instagram:** [Insert handle]
+- **LinkedIn:** [Insert handle]
+- **GitHub:** [Insert handle]
+
+---
+
+## ABOUT MIET
+
+Meerut Institute of Engineering and Technology (MIET) is one of the premier engineering institutions in Uttar Pradesh, India. Located in Meerut, MIET offers undergraduate and postgraduate programs in engineering, technology, and management. The institute is known for its strong technical culture, active student clubs, and industry collaborations.
+
+---
+
+*This document is the primary knowledge source for Trix, the official AI assistant of Trikon 3.0. Update the placeholder fields (marked with [brackets]) before deploying.*
