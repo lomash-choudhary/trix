@@ -36,7 +36,7 @@ HOW TO RUN:
   1. pip install -r requirements.txt
   2. Fill in your .env file (copy from .env.example)
   3. python app.py
-  4. Visit http://localhost:5000 in your browser
+  4. Visit http://localhost:3000 in your browser
 ================================================================================
 """
 
@@ -417,7 +417,7 @@ def run_initialization():
         qa_system = create_qa_chain(vector_store)
 
         logger.info("━" * 60)
-        logger.info("🎉 Trix is READY! Visit http://localhost:5000")
+        logger.info("🎉 Trix is READY! Visit http://localhost:3000")
         logger.info("━" * 60)
 
     except Exception as e:
@@ -435,7 +435,7 @@ def run_initialization():
 
 
 # ── HTML Template ─────────────────────────────────────────────────────────────
-# This is the full HTML page served at http://localhost:5000
+# This is the full HTML page served at http://localhost:3000
 # Juniors: feel free to edit the CSS and HTML text below.
 # The {% if %} blocks are Jinja2 template syntax — they control what shows up.
 
@@ -658,7 +658,7 @@ HTML_TEMPLATE = """
 def index():
     """
     Home page — renders the main chat UI.
-    GET http://localhost:5000/
+    GET http://localhost:3000/
     """
     return render_template_string(
         HTML_TEMPLATE,
@@ -676,7 +676,7 @@ def initialize():
     """
     Starts (or restarts) the initialization process in a background thread.
     Called when the user clicks "Start Trix" or "Retry" on the page.
-    POST http://localhost:5000/initialize
+    POST http://localhost:3000/initialize
     """
     global is_initializing, initialization_error, qa_system
 
@@ -703,7 +703,7 @@ def web_ask():
     """
     Handles a question submitted from the HTML form.
     Returns the full HTML page with Trix's answer inserted.
-    POST http://localhost:5000/web-ask
+    POST http://localhost:3000/web-ask
     """
     question = request.form.get("question", "").strip()
 
@@ -811,7 +811,7 @@ def ask_api():
 def health():
     """
     Health check endpoint — for deployment monitoring or debugging.
-    GET http://localhost:5000/health
+    GET http://localhost:3000/health
 
     Returns JSON with the current system status.
     """
@@ -846,7 +846,7 @@ if __name__ == "__main__":
 
     # Read server settings from .env (or use defaults)
     host = os.getenv("HOST", "0.0.0.0")          # 0.0.0.0 = accessible on your local network
-    port = int(os.getenv("PORT", "5000"))
+    port = int(os.getenv("PORT", "3000"))
     debug = os.getenv("DEBUG", "false").lower() == "true"
 
     logger.info(f"🌐 Flask server starting at http://localhost:{port}")
