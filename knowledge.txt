@@ -1,165 +1,144 @@
-# TRIX - Official Assistant for Trikon 3.0
-# Meerut Institute of Engineering and Technology (MIET)
-# Knowledge Base Document
+Basic Details
+Event Name: TRIKON 3.0 – A Tech Triathlon
+Registration Opens: 16 March 2026 – 31 March 2026
+Hackathon Starts On: 4th April, 2026 – 10:00 AM
+Ends On: 5th April, 2026 – 2:00 PM (28-Hour Hackathon)
+Mode: Offline
+Location: MIET, Meerut, Uttar Pradesh, India
 
----
+Overview 
+TRIKON 3.0 – A Tech Triathlon is an innovation-driven hackathon designed to empower student developers, ideators, and designers to build impactful solutions using Artificial Intelligence. Building on the success of TRIKON 1.0 and TRIKON 2.0, the event continues to encourage creativity, collaboration, and real-world problem solving within the student tech community.
+Centered around the theme “Build with AI for a Smarter Tomorrow”, TRIKON 3.0 is a 28-hour offline hackathon where participants develop solutions in which AI or Machine Learning serves as the core component. The event challenges teams to apply their technical knowledge, creativity, and teamwork skills while working under time constraints.
 
-## ABOUT TRIKON 3.0
+Objectives
+• Promote AI-driven innovation by encouraging participants to develop impactful solutions for real-world challenges, inspired by the vision of the AI Impact Summit 2026.
+• Empower Women in Tech by creating an inclusive platform and recognizing outstanding participation and achievements by female innovators.
+• Encourage problem-solving and collaboration among students through a competitive hackathon environment that blends ideation, development, and pitching.
 
-Trikon 3.0 is the flagship hackathon of Meerut Institute of Engineering and Technology (MIET), Meerut. It is a 2-day coding and innovation hackathon where students from across the country come together to build, create, and compete. The event is organized by the students of MIET and supported by the college faculty and technical clubs.
+Rounds
+• Round 1 – AI Vision Blueprint: The event begins with an introductory session and problem briefing. Teams will brainstorm ideas, define the problem statement, and present a structured blueprint of their solution, including the proposed AI integration.
+• Round 2 – Build Sprint Alpha: Qualified teams will enter an intensive build phase to transform their ideas into working prototypes, focusing on development, AI integration, and functional implementation.
+• Round 3 – Impact Arena: In the final stage, teams will present and demonstrate their solutions to the judging panel, explaining their approach, technology stack, and the impact of their AI-powered solution.
+Adherence to Standards
+Participants must demonstrate continuous progress throughout the hackathon. Any violation of rules or lack of meaningful progress may lead to disqualification.
+Finally, the top-performing teams will be evaluated by the judging panel based on innovation, technical execution, and overall impact to determine the winner of TRIKON 3.0.
 
----
+Timeline
 
-## EVENT DETAILS
+Registrations
+Start: Mar 16, 2026, 12:00 PM
+End: Mar 31, 2026, 11:59 AM
 
-- **Event Name:** Trikon 3.0
-- **Type:** Hackathon (Tech Fest)
-- **Duration:** 2 Days
-- **Organized by:** Meerut Institute of Engineering and Technology (MIET), Meerut, Uttar Pradesh
-- **Venue:** MIET Campus, Meerut, Uttar Pradesh, India
-- **Official Assistant:** Trix
+Opening Ceremony & Hackathon Briefing
+Start: Apr 04, 2026, 08:30 AM
+End: Apr 04, 2026, 11:00 AM
 
----
+AI Vision Blueprint (Idea & Architecture Planning)
+Start: Apr 04, 2026, 11:00 AM
+End: Apr 04, 2026, 03:00 PM
 
-## SCHEDULE OVERVIEW
+Evaluation & Selection of Top 25 Teams
+Start: Apr 04, 2026, 03:00 PM
+End: Apr 04, 2026, 05:00 PM
 
-### Day 1
-- 09:00 AM – Registration & Check-in
-- 10:00 AM – Inauguration Ceremony & Opening Remarks
-- 11:00 AM – Problem Statement Release & Team Briefing
-- 12:00 PM – Hacking Begins
-- 01:00 PM – Lunch Break
-- 06:00 PM – Mentorship Sessions (Round 1)
-- 08:00 PM – Dinner
-- 10:00 PM – Overnight hacking continues
+Build Sprint Alpha (Prototype Development)
+Start: Apr 04, 2026, 05:00 PM
+End: Apr 05, 2026, 10:00 AM
 
-### Day 2
-- 08:00 AM – Breakfast
-- 10:00 AM – Mentorship Sessions (Round 2)
-- 12:00 PM – Submission Deadline
-- 01:00 PM – Lunch Break
-- 02:00 PM – Project Presentations & Judging
-- 05:00 PM – Results Announcement
-- 06:00 PM – Prize Distribution & Closing Ceremony
+Impact Arena – Final Presentations (Top 10 Teams)
+Start: Apr 05, 2026, 10:00 AM
+End: Apr 05, 2026, 12:30 PM
 
----
+Results & Prize Distribution Ceremony
+Start: Apr 05, 2026, 12:30 PM
+End: Apr 05, 2026, 01:30 PM
 
-## PARTICIPATION
+Tracks 
+Participants can build solutions under the following tracks, with AI/ML as the core integration:
+AR/VR
+AI/ML
+IoT
+Hardware
+Software
+Open Innovation 
 
-- **Who can participate:** Engineering and technology students from any college across India
-- **Team Size:** 2 to 4 members per team
-- **Registration:** Online via the official Trikon 3.0 website
-- **Participation Fee:** [Update with actual fee or "Free"]
-- **Eligibility:** Open to undergraduate and postgraduate students
+Rules
+• Each team must consist of 3–5 members.
+• Team members may belong to different branches, years, or colleges.
+• No team member changes are allowed after registration.
+• Participants must be currently enrolled in a college and must carry valid college ID cards.
+• Teams must submit a one-page problem statement document during registration.
+• All development must take place within the official 28-hour hackathon duration.
+• Plagiarism, code copying, or reuse of existing projects without disclosure is strictly prohibited.
+• Use of AI tools, APIs, frameworks, and pre-trained models is permitted, but their usage must be clearly documented and explained.
+• Teams must demonstrate continuous progress throughout the hackathon.
+• Participants must maintain professional conduct and teamwork during the event.
+• Any violation of rules may lead to immediate disqualification. 
 
----
 
-## TRACKS / THEMES
+Elimination:
+• Teams will be disqualified if they: 
+• Are found guilty of plagiarism or unfair practices 
+• Violate event rules or code of conduct 
+• Miss mandatory presentations or demonstrations
 
-Participants can choose from the following problem domains:
+Judging Criteria:
+• Innovation and originality of the idea
+• Clarity of problem statement and relevance
+• Depth and correctness of AI/ML integration
+• Working prototype quality and technical execution
+• Scalability, usability, and real-world impact
+• Team presentation and ability to answer questions
 
-1. **Artificial Intelligence & Machine Learning** – Build smart solutions using AI/ML
-2. **Web & App Development** – Create impactful web or mobile applications
-3. **Cybersecurity** – Solve real-world security challenges
-4. **IoT & Hardware** – Build embedded or hardware-integrated projects
-5. **Open Innovation** – Any innovative tech idea that doesn't fit the above tracks
+Frequently Asked Questions (Q&A)
 
----
+Q1. Who can participate in TRIKON 3.0?
+A. Any currently enrolled college student with a valid college ID card can participate.
 
-## PRIZES & REWARDS
+Q2. What is the team size requirement?
+A. Each team must have 3 to 5 members.
 
-- **1st Place:** ₹[Amount] + Trophy + Certificates + Goodies
-- **2nd Place:** ₹[Amount] + Trophy + Certificates + Goodies
-- **3rd Place:** ₹[Amount] + Trophy + Certificates + Goodies
-- **Special Awards:** Best UI/UX, Best Use of AI, Most Innovative Idea
-- All participants receive participation certificates.
+Q3. Can team members be from different branches or colleges?
+A. Yes. Cross-branch and cross-college teams are allowed.
 
----
+Q4. Can we change team members after registration?
+A. No. Team member changes are not allowed after registration.
 
-## RULES & GUIDELINES
+Q5. Is the event online or offline?
+A. TRIKON 3.0 is an offline hackathon at MIET, Meerut.
 
-1. All team members must be currently enrolled students.
-2. Teams must build their project from scratch during the hackathon — pre-built projects are not allowed.
-3. Use of open-source libraries and APIs is permitted.
-4. Projects must be original and must not plagiarize existing work.
-5. Each team must submit their code on GitHub and provide a working demo.
-6. Teams must present their project to the judges within the allotted time.
-7. Any form of misconduct will lead to disqualification.
-8. The decision of the judges is final.
+Q6. What is the hackathon duration?
+A. It is a 28-hour hackathon running from 4 April 2026 (10:00 AM) to 5 April 2026 (2:00 PM).
 
----
+Q7. Is AI/ML mandatory in the project?
+A. Yes. AI/ML must be the core component of your solution.
 
-## JUDGING CRITERIA
+Q8. Can we use pre-trained models, APIs, and AI tools?
+A. Yes, they are allowed, but usage must be clearly documented and explained.
 
-Projects will be evaluated on the following parameters:
+Q9. Can we use an old project or reused code?
+A. Reuse without disclosure is prohibited. Plagiarism or unfair practices can lead to disqualification.
 
-- **Innovation & Creativity** (25%) – How unique and original is the idea?
-- **Technical Complexity** (25%) – How technically challenging and well-built is the solution?
-- **Impact & Usefulness** (20%) – Does the project solve a real problem?
-- **Presentation & Demo** (20%) – How well is the project explained and demonstrated?
-- **UI/UX Design** (10%) – Is the interface clean, intuitive, and user-friendly?
+Q10. What do we need to submit during registration?
+A. Teams must submit a one-page problem statement document.
 
----
+Q11. How many teams move forward after Round 1?
+A. Top 25 teams are selected after the AI Vision Blueprint evaluation.
 
-## MENTORS & JUDGES
+Q12. How many teams present in the final round?
+A. Top 10 teams present in the Impact Arena final presentations.
 
-Trikon 3.0 features experienced mentors from industry and academia who will guide teams throughout the hackathon. Details of judges and mentors will be announced on the official website and social media channels.
+Q13. What happens if a team misses mandatory demos or presentations?
+A. Missing mandatory checkpoints may result in disqualification.
 
----
+Q14. What are judges looking for most?
+A. Judges evaluate innovation, technical execution, AI integration, and overall real-world impact.
 
-## FACILITIES PROVIDED
+Q15. Is continuous progress required throughout the event?
+A. Yes. Teams must show meaningful progress during the full hackathon period.
 
-- 24/7 hacking space
-- Wi-Fi connectivity throughout the venue
-- Meals (lunch, dinner, breakfast) for all registered participants
-- Sleeping arrangements for outstation participants
-- Power backup and charging stations
-- Medical assistance on campus
 
----
+Event Logo:
 
-## FREQUENTLY ASKED QUESTIONS (FAQ)
 
-**Q: Can I participate solo?**
-A: No, Trikon 3.0 requires teams of 2 to 4 members.
-
-**Q: Can team members be from different colleges?**
-A: Yes, cross-college teams are allowed and encouraged.
-
-**Q: Is there a registration fee?**
-A: Please check the official website for the latest registration fee details.
-
-**Q: What should I bring?**
-A: Bring your laptop, charger, college ID card, and any hardware components you may need for your project.
-
-**Q: Will food and accommodation be provided?**
-A: Yes, meals will be provided to all registered participants. Accommodation is available for outstation participants — please mention this during registration.
-
-**Q: Can we use cloud services or APIs?**
-A: Yes, you may use any publicly available APIs, cloud platforms, or open-source tools.
-
-**Q: What is the last date to register?**
-A: Registration deadlines will be announced on the official website. Register early to secure your spot!
-
-**Q: Who do I contact for queries?**
-A: Reach out to the Trikon 3.0 organizing team via the official email or social media handles listed on the website.
-
----
-
-## CONTACT & SOCIAL MEDIA
-
-- **Website:** [Insert official website URL]
-- **Email:** [Insert official contact email]
-- **Instagram:** [Insert handle]
-- **LinkedIn:** [Insert handle]
-- **GitHub:** [Insert handle]
-
----
-
-## ABOUT MIET
-
-Meerut Institute of Engineering and Technology (MIET) is one of the premier engineering institutions in Uttar Pradesh, India. Located in Meerut, MIET offers undergraduate and postgraduate programs in engineering, technology, and management. The institute is known for its strong technical culture, active student clubs, and industry collaborations.
-
----
-
-*This document is the primary knowledge source for Trix, the official AI assistant of Trikon 3.0. Update the placeholder fields (marked with [brackets]) before deploying.*
+College Logo:
