@@ -6,7 +6,7 @@
 ✅ `.github/workflows/deploy.yml` - Auto-deploy on git push  
 ✅ `.env.example` - Template for environment variables  
 ✅ `setup-vm.sh` - One-command VM setup script  
-✅ `DEPLOYMENT.md` - Complete deployment documentation  
+✅ `DEPLOYMENT.md` - Complete deployment documentation
 
 ---
 
@@ -47,11 +47,13 @@ ENV_FILE         = GOOGLE_API_KEY=abc... (your .env content)
 ```
 
 **To get your SSH key:**
+
 ```bash
 cat ~/.ssh/id_rsa  # Copy everything
 ```
 
 **To get ENV_FILE content:**
+
 ```bash
 cat .env  # Copy everything
 ```
@@ -81,6 +83,7 @@ git push origin main
 ```
 
 **That's it!** GitHub will automatically:
+
 - Pull code on VM
 - Install dependencies
 - Restart the app
@@ -117,6 +120,7 @@ curl http://localhost:3000/health
 ## ⚠️ Important Notes
 
 ### Security
+
 - ✅ `.env` is in `.gitignore` (don't commit it!)
 - ✅ Use GitHub Secrets for sensitive data
 - ✅ Never share your SSH private key
@@ -124,17 +128,20 @@ curl http://localhost:3000/health
 ### First-Time Issues
 
 **"Port 5000 already in use"**
+
 ```bash
 # The app now runs on port 3000
 # Check your .env has: PORT=3000
 ```
 
 **"PM2 not found"**
+
 ```bash
 sudo npm install -g pm2
 ```
 
 **"Permission denied"**
+
 ```bash
 chmod 600 ~/.ssh/id_rsa  # On your local machine
 ```
@@ -143,14 +150,14 @@ chmod 600 ~/.ssh/id_rsa  # On your local machine
 
 ## 🔗 Files Created
 
-| File | Purpose |
-|------|---------|
-| `ecosystem.config.js` | PM2 app configuration |
-| `.github/workflows/deploy.yml` | Auto-deployment workflow |
-| `.env.example` | Environment template |
-| `setup-vm.sh` | VM setup script |
-| `DEPLOYMENT.md` | Full documentation |
-| `.gitignore` | Files to ignore (updated) |
+| File                           | Purpose                   |
+| ------------------------------ | ------------------------- |
+| `ecosystem.config.js`          | PM2 app configuration     |
+| `.github/workflows/deploy.yml` | Auto-deployment workflow  |
+| `.env.example`                 | Environment template      |
+| `setup-vm.sh`                  | VM setup script           |
+| `DEPLOYMENT.md`                | Full documentation        |
+| `.gitignore`                   | Files to ignore (updated) |
 
 ---
 

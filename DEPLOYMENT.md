@@ -77,13 +77,13 @@ Add these secrets:
 
 ### Required Secrets:
 
-| Secret Name | Description | Example |
-|-------------|-------------|---------|
-| `VM_HOST` | Your Azure VM IP address | `20.123.45.67` |
-| `VM_USER` | SSH username | `azureuser` |
-| `VM_SSH_KEY` | Your **private** SSH key | `-----BEGIN OPENSSH PRIVATE KEY-----...` |
-| `VM_PORT` | SSH port (optional, default 22) | `22` |
-| `ENV_FILE` | Your complete .env file content | See below ⬇️ |
+| Secret Name  | Description                     | Example                                  |
+| ------------ | ------------------------------- | ---------------------------------------- |
+| `VM_HOST`    | Your Azure VM IP address        | `20.123.45.67`                           |
+| `VM_USER`    | SSH username                    | `azureuser`                              |
+| `VM_SSH_KEY` | Your **private** SSH key        | `-----BEGIN OPENSSH PRIVATE KEY-----...` |
+| `VM_PORT`    | SSH port (optional, default 22) | `22`                                     |
+| `ENV_FILE`   | Your complete .env file content | See below ⬇️                             |
 
 ---
 
@@ -120,6 +120,7 @@ cat ~/.ssh/id_rsa  # or id_ed25519
 ```
 
 Copy the **entire output** including:
+
 - `-----BEGIN OPENSSH PRIVATE KEY-----`
 - All the middle content
 - `-----END OPENSSH PRIVATE KEY-----`
@@ -151,6 +152,7 @@ git push origin main
 ```
 
 Watch the deployment:
+
 - Go to GitHub → Actions tab
 - Click on the running workflow
 
@@ -244,12 +246,14 @@ No extra quotes or formatting!
 ## 🔒 Security Tips
 
 ✅ **DO:**
+
 - Keep `.env` in `.gitignore`
 - Use GitHub Secrets for sensitive data
 - Restrict SSH key permissions: `chmod 600 ~/.ssh/id_rsa`
 - Use strong API keys
 
 ❌ **DON'T:**
+
 - Commit `.env` to GitHub
 - Share your SSH private key
 - Push API keys in code
@@ -284,11 +288,13 @@ Add health checks to GitHub Actions workflow.
 ## 📞 Need Help?
 
 Common issues:
+
 1. **"port already in use"** → Check PM2 and kill old processes
 2. **"connection refused"** → Check VM firewall and NSG rules
 3. **"permission denied"** → Check SSH key and VM user permissions
 
 Check logs:
+
 ```bash
 pm2 logs trix-chatbot --lines 100
 ```

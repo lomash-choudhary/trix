@@ -4,7 +4,7 @@ module.exports = {
       name: "trix-chatbot",
       script: "server2.py",
       interpreter: "./venv/bin/python3",
-      cwd: "/home/azureuser/trikon-2",  // Update this to your actual deployment path
+      cwd: "/home/azureuser/trix",
       instances: 1,
       autorestart: true,
       watch: false,
