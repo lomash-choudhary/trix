@@ -1,2 +1,34 @@
-/.env
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Virtual environment
 venv/
+env/
+ENV/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# FAISS index
+faiss_index/
+
+# PM2 logs
+logs/
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,51 @@
+name: Deploy to Azure VM
+
+on:
+  push:
+    branches:
+      - main  # Change to your branch name if different
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 🚀 Deploy to Azure VM
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VM_HOST }}
+          username: ${{ secrets.VM_USER }}
+          key: ${{ secrets.VM_SSH_KEY }}
+          port: ${{ secrets.VM_PORT || 22 }}
+          script: |
+            set -e  # Exit on any error
+            
+            echo "📦 Navigating to project directory..."
+            cd /home/azureuser/trikon-2  # Update this path to match your VM
+            
+            echo "📥 Pulling latest code from GitHub..."
+            git pull origin main
+            
+            echo "🔐 Writing .env file from GitHub Secrets..."
+            cat > .env << 'EOF'
+            ${{ secrets.ENV_FILE }}
+            EOF
+            
+            echo "🐍 Activating virtual environment..."
+            source venv/bin/activate
+            
+            echo "📦 Installing/updating dependencies..."
+            pip install -r requirements.txt
+            
+            echo "📁 Creating logs directory if it doesn't exist..."
+            mkdir -p logs
+            
+            echo "🔄 Restarting application with PM2..."
+            pm2 restart trix-chatbot || pm2 start ecosystem.config.js
+            
+            echo "💾 Saving PM2 process list..."
+            pm2 save
+            
+            echo "✅ Deployment complete!"
+            echo "📊 Process status:"
+            pm2 status
