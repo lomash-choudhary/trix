@@ -1,144 +1,481 @@
-Basic Details
+================================================================================
+TRIKON 3.0 – GENERAL INFORMATION
+================================================================================
+
 Event Name: TRIKON 3.0 – A Tech Triathlon
-Registration Opens: 16 March 2026 – 31 March 2026
-Hackathon Starts On: 4th April, 2026 – 10:00 AM
-Ends On: 5th April, 2026 – 2:00 PM (28-Hour Hackathon)
-Mode: Offline
-Location: MIET, Meerut, Uttar Pradesh, India
+Type: 28-hour offline hackathon
+Organized by: INTELLIA, the official technical society of MIET
+College: Meerut Institute of Engineering and Technology (MIET), Meerut, Uttar Pradesh, India
+Theme: "Build with AI for a Smarter Tomorrow."
 
-Overview 
-TRIKON 3.0 – A Tech Triathlon is an innovation-driven hackathon designed to empower student developers, ideators, and designers to build impactful solutions using Artificial Intelligence. Building on the success of TRIKON 1.0 and TRIKON 2.0, the event continues to encourage creativity, collaboration, and real-world problem solving within the student tech community.
-Centered around the theme “Build with AI for a Smarter Tomorrow”, TRIKON 3.0 is a 28-hour offline hackathon where participants develop solutions in which AI or Machine Learning serves as the core component. The event challenges teams to apply their technical knowledge, creativity, and teamwork skills while working under time constraints.
+Start: 4 April 2026 at 10:00 AM
+End: 5 April 2026 at 2:00 PM
+Venue: MIET Campus, Meerut (offline)
 
-Objectives
-• Promote AI-driven innovation by encouraging participants to develop impactful solutions for real-world challenges, inspired by the vision of the AI Impact Summit 2026.
-• Empower Women in Tech by creating an inclusive platform and recognizing outstanding participation and achievements by female innovators.
-• Encourage problem-solving and collaboration among students through a competitive hackathon environment that blends ideation, development, and pitching.
+================================================================================
+TRIKON 3.0 – REGISTRATION
+================================================================================
 
-Rounds
-• Round 1 – AI Vision Blueprint: The event begins with an introductory session and problem briefing. Teams will brainstorm ideas, define the problem statement, and present a structured blueprint of their solution, including the proposed AI integration.
-• Round 2 – Build Sprint Alpha: Qualified teams will enter an intensive build phase to transform their ideas into working prototypes, focusing on development, AI integration, and functional implementation.
-• Round 3 – Impact Arena: In the final stage, teams will present and demonstrate their solutions to the judging panel, explaining their approach, technology stack, and the impact of their AI-powered solution.
-Adherence to Standards
-Participants must demonstrate continuous progress throughout the hackathon. Any violation of rules or lack of meaningful progress may lead to disqualification.
-Finally, the top-performing teams will be evaluated by the judging panel based on innovation, technical execution, and overall impact to determine the winner of TRIKON 3.0.
+Registration Open: 15 March 2026 at 12:00 PM
+Registration Close: 31 March 2026 at 11:59 PM
+Requirement: Teams must submit a one-page problem statement during registration.
 
-Timeline
+================================================================================
+TRIKON 3.0 – TIMELINE / SCHEDULE
+================================================================================
 
-Registrations
-Start: Mar 16, 2026, 12:00 PM
-End: Mar 31, 2026, 11:59 AM
+4 April 2026:
+- 8:30 AM – 11:00 AM  → Opening Ceremony and Hackathon Briefing
+- 11:00 AM – 3:00 PM  → Round 1: AI Vision Blueprint
+- 3:00 PM – 5:00 PM   → Evaluation: Top 25 teams selected
+- 5:00 PM onwards     → Round 2: Build Sprint Alpha begins
 
-Opening Ceremony & Hackathon Briefing
-Start: Apr 04, 2026, 08:30 AM
-End: Apr 04, 2026, 11:00 AM
+5 April 2026:
+- Until 10:00 AM      → Round 2: Build Sprint Alpha ends
+- 10:00 AM – 12:30 PM → Round 3: Impact Arena (Final Presentations)
+- 12:30 PM – 1:30 PM  → Results and Prize Distribution Ceremony
 
-AI Vision Blueprint (Idea & Architecture Planning)
-Start: Apr 04, 2026, 11:00 AM
-End: Apr 04, 2026, 03:00 PM
+================================================================================
+TRIKON 3.0 – ROUNDS
+================================================================================
 
-Evaluation & Selection of Top 25 Teams
-Start: Apr 04, 2026, 03:00 PM
-End: Apr 04, 2026, 05:00 PM
+Round 1 – AI Vision Blueprint:
+Teams attend the introductory session, brainstorm ideas, identify a problem statement, and create a blueprint. Must explain how AI or ML will be used.
 
-Build Sprint Alpha (Prototype Development)
-Start: Apr 04, 2026, 05:00 PM
-End: Apr 05, 2026, 10:00 AM
+Round 2 – Build Sprint Alpha:
+Qualified teams build their prototype, implement AI models or APIs, and convert their idea into a working solution.
 
-Impact Arena – Final Presentations (Top 10 Teams)
-Start: Apr 05, 2026, 10:00 AM
-End: Apr 05, 2026, 12:30 PM
+Round 3 – Impact Arena:
+Top teams present their projects to the judging panel. Must explain tech stack, demo the prototype, and highlight real-world impact.
 
-Results & Prize Distribution Ceremony
-Start: Apr 05, 2026, 12:30 PM
-End: Apr 05, 2026, 01:30 PM
+================================================================================
+TRIKON 3.0 – TRACKS
+================================================================================
 
-Tracks 
-Participants can build solutions under the following tracks, with AI/ML as the core integration:
-AR/VR
-AI/ML
-IoT
-Hardware
-Software
-Open Innovation 
+Available tracks:
+- Artificial Intelligence and Machine Learning
+- AR/VR Technologies
+- Internet of Things (IoT)
+- Hardware Solutions
+- Software Platforms
+- Open Innovation
 
-Rules
-• Each team must consist of 3–5 members.
-• Team members may belong to different branches, years, or colleges.
-• No team member changes are allowed after registration.
-• Participants must be currently enrolled in a college and must carry valid college ID cards.
-• Teams must submit a one-page problem statement document during registration.
-• All development must take place within the official 28-hour hackathon duration.
-• Plagiarism, code copying, or reuse of existing projects without disclosure is strictly prohibited.
-• Use of AI tools, APIs, frameworks, and pre-trained models is permitted, but their usage must be clearly documented and explained.
-• Teams must demonstrate continuous progress throughout the hackathon.
-• Participants must maintain professional conduct and teamwork during the event.
-• Any violation of rules may lead to immediate disqualification. 
+Note: AI or Machine Learning must play a core role in every project, regardless of track.
 
+================================================================================
+TRIKON 3.0 – RULES
+================================================================================
 
-Elimination:
-• Teams will be disqualified if they: 
-• Are found guilty of plagiarism or unfair practices 
-• Violate event rules or code of conduct 
-• Miss mandatory presentations or demonstrations
+- Team size: 3 to 5 members
+- Members can be from different branches, years, or colleges
+- Valid college ID card is mandatory
+- Submit a one-page problem statement during registration
+- All development must happen during the official 28-hour period
+- Plagiarism is strictly prohibited
+- AI tools, APIs, and pre-trained models are allowed but must be documented
+- Teams must show continuous development progress
+- Violations may result in disqualification
 
-Judging Criteria:
-• Innovation and originality of the idea
-• Clarity of problem statement and relevance
-• Depth and correctness of AI/ML integration
-• Working prototype quality and technical execution
-• Scalability, usability, and real-world impact
-• Team presentation and ability to answer questions
+================================================================================
+TRIKON 3.0 – OBJECTIVES
+================================================================================
 
-Frequently Asked Questions (Q&A)
+- Promote AI-driven innovation among students
+- Encourage exploration of AI across industries
+- Empower Women in Technology
+- Build a strong developer and innovator community
+- Give practical exposure to teamwork, development, and presentation
 
-Q1. Who can participate in TRIKON 3.0?
-A. Any currently enrolled college student with a valid college ID card can participate.
+================================================================================
+ABOUT INTELLIA
+================================================================================
 
-Q2. What is the team size requirement?
-A. Each team must have 3 to 5 members.
+INTELLIA is the official technical society of MIET.
+Founded to build a strong technology culture and provide students opportunities to learn, build, and innovate beyond the classroom.
+Activities include workshops, technical events, hackathons, and collaborative sessions.
+Internal teams: Technical Club, Management Club, Creative Club, and Junior Members Team.
 
-Q3. Can team members be from different branches or colleges?
-A. Yes. Cross-branch and cross-college teams are allowed.
+================================================================================
+ABOUT TRIX
+================================================================================
 
-Q4. Can we change team members after registration?
-A. No. Team member changes are not allowed after registration.
+TRIX is the official AI chatbot and tech mascot of INTELLIA and the TRIKON hackathon series.
+TRIX helps participants with questions about TRIKON, event schedules, rules, team members, and contact info.
+Tagline: "Trix won't trick you!"
 
-Q5. Is the event online or offline?
-A. TRIKON 3.0 is an offline hackathon at MIET, Meerut.
+================================================================================
+LEADERSHIP – KHUSHI GUPTA (President, INTELLIA)
+================================================================================
 
-Q6. What is the hackathon duration?
-A. It is a 28-hour hackathon running from 4 April 2026 (10:00 AM) to 5 April 2026 (2:00 PM).
+Name: Khushi Gupta
+Role: President of INTELLIA
+Branch: CSE AI, MIET
+Responsibilities: Oversees all major initiatives including TRIKON, guides technical, management, and creative teams.
 
-Q7. Is AI/ML mandatory in the project?
-A. Yes. AI/ML must be the core component of your solution.
+Instagram: https://www.instagram.com/__.khushi.19
+LinkedIn: https://www.linkedin.com/in/khushi-gupta-8b6308247
+Email: khushi97000@gmail.com
 
-Q8. Can we use pre-trained models, APIs, and AI tools?
-A. Yes, they are allowed, but usage must be clearly documented and explained.
+================================================================================
+PANEL MEMBER – MAYUR RASTOGI
+================================================================================
 
-Q9. Can we use an old project or reused code?
-A. Reuse without disclosure is prohibited. Plagiarism or unfair practices can lead to disqualification.
+Name: Mayur Rastogi
+Role: Panel Member, INTELLIA
+Branch: CSE AIML, MIET
+Contribution: Coordination, planning, and decision-making for technical activities.
 
-Q10. What do we need to submit during registration?
-A. Teams must submit a one-page problem statement document.
+Instagram: https://www.instagram.com/mayur_rastogi01
+LinkedIn: https://www.linkedin.com/in/MayurRastogi
 
-Q11. How many teams move forward after Round 1?
-A. Top 25 teams are selected after the AI Vision Blueprint evaluation.
+================================================================================
+PANEL MEMBER – PARTH JUNEJA
+================================================================================
 
-Q12. How many teams present in the final round?
-A. Top 10 teams present in the Impact Arena final presentations.
+Name: Parth Juneja
+Role: Panel Member, INTELLIA
+Branch: CSE AIML, MIET
+Contribution: Strategic planning and organization of events.
 
-Q13. What happens if a team misses mandatory demos or presentations?
-A. Missing mandatory checkpoints may result in disqualification.
+Instagram: https://www.instagram.com/parthjuneja4
+LinkedIn: https://www.linkedin.com/in/parthjuneja0
 
-Q14. What are judges looking for most?
-A. Judges evaluate innovation, technical execution, AI integration, and overall real-world impact.
+================================================================================
+PANEL MEMBER – KARTIKEY SHARMA
+================================================================================
 
-Q15. Is continuous progress required throughout the event?
-A. Yes. Teams must show meaningful progress during the full hackathon period.
+Name: Kartikey Sharma
+Role: Panel Member, INTELLIA
+Branch: CSE AIML, MIET
+Contribution: Planning and technical oversight of society initiatives.
 
+Instagram: https://www.instagram.com/kartikeysharma03
+LinkedIn: https://www.linkedin.com/in/kartikey-sharma-7195a91b4
 
-Event Logo:
+================================================================================
+TECHNICAL CLUB – LOMASH CHOUDHARY (Technical Coordinator)
+================================================================================
 
+Name: Lomash Choudhary
+Role: Technical Coordinator, INTELLIA
+Branch: CSE AIML, MIET
+Responsibilities: Leads the technical team for development systems, event platforms, and technical support.
 
-College Logo:
+Instagram: https://www.instagram.com/__lomashchoudhary
+LinkedIn: https://www.linkedin.com/in/lomash-choudhary
+GitHub: https://github.com/lomash-choudhary
+Email: lomashchoudhary9812@gmail.com
+
+================================================================================
+TECHNICAL CLUB – SAHIL GULATI
+================================================================================
+
+Name: Sahil Gulati
+Role: Technical Club Member, INTELLIA
+Area: Web Development
+Contribution: Builds and maintains event websites.
+
+================================================================================
+TECHNICAL CLUB – ARUSH RASTOGI
+================================================================================
+
+Name: Arush Rastogi
+Role: Technical Club Member, INTELLIA
+Area: App Development
+Contribution: Mobile and application-based solutions for the society.
+
+================================================================================
+TECHNICAL CLUB – CHETAN NARAYAN SHARMA
+================================================================================
+
+Name: Chetan Narayan Sharma
+Role: Technical Club Member, INTELLIA
+Area: Automation
+Contribution: Develops systems that improve event operations.
+
+================================================================================
+MANAGEMENT CLUB – PRAGATI TOMAR (Management Coordinator)
+================================================================================
+
+Name: Pragati Tomar
+Role: Management Coordinator, INTELLIA
+Branch: CSE AI, MIET
+Responsibilities: Event logistics, participant communication, operational planning.
+
+Instagram: https://www.instagram.com/pragatitomar_21
+LinkedIn: https://www.linkedin.com/in/pragati-tomar-0b438028b
+Email: pragati.tomar.cseai.2023@miet.ac.in
+
+================================================================================
+MANAGEMENT CLUB – ANUSHKA SINGHAL
+================================================================================
+
+Name: Anushka Singhal
+Role: Management Club Member, INTELLIA
+Area: Outreach and communication with participants.
+
+================================================================================
+MANAGEMENT CLUB – DEEPIKA SHARMA
+================================================================================
+
+Name: Deepika Sharma
+Role: Management Club Member, INTELLIA
+Area: Public relations, external communication, and event visibility.
+
+================================================================================
+CREATIVE CLUB – AREEB SIDDIQUI (Creative Coordinator)
+================================================================================
+
+Name: Areeb Siddiqui
+Role: Creative Coordinator, INTELLIA
+Branch: CSE AIML, MIET
+Responsibilities: Leads creative team for promotional materials, visual identity, and event branding.
+
+Instagram: https://www.instagram.com/areyaarareeb
+GitHub: https://github.com/areebsiddiquii
+LinkedIn: https://www.linkedin.com/in/areebsiddiquii
+Email: areebsid101@gmail.com
+
+================================================================================
+CREATIVE CLUB – ARJUN KASANA
+================================================================================
+
+Name: Arjun Kasana
+Role: Creative Club Member, INTELLIA
+Area: Media and visual content creation.
+
+================================================================================
+CREATIVE CLUB – SANYAM JAIN
+================================================================================
+
+Name: Sanyam Jain
+Role: Creative Club Member, INTELLIA
+Area: Creative concepts and branding.
+
+================================================================================
+CREATIVE CLUB – JAYANT BANSAL
+================================================================================
+
+Name: Jayant Bansal
+Role: Creative Club Member, INTELLIA
+Area: Decorations and visual setup during events.
+
+================================================================================
+JUNIOR MEMBER – ALICE CHAUDHARY
+================================================================================
+
+Name: Alice Chaudhary
+Role: Junior Member, INTELLIA
+Area: Automation
+
+GitHub: https://github.com/Alice8206
+LinkedIn: https://www.linkedin.com/in/aanya-jain-b10140345
+Email: alice.chaudhary.cseaiml.2024@miet.ac.in
+
+================================================================================
+JUNIOR MEMBER – MOHIT RAGHAV
+================================================================================
+
+Name: Mohit Raghav
+Role: Junior Member, INTELLIA
+Area: Web Development
+Contribution: Builds and maintains web platforms for society events and hackathons.
+
+Instagram: https://www.instagram.com/im_mohit_raghav/
+GitHub: https://github.com/mohitraghav1318
+LinkedIn: https://www.linkedin.com/in/mohitraghav1318
+Email: mohitraghav1318@gmail.com
+
+================================================================================
+JUNIOR MEMBER – SUBHADIP DAWN
+================================================================================
+
+Name: Subhadip Dawn
+Role: Junior Member, INTELLIA
+Area: App Development
+
+Instagram: https://www.instagram.com/_.mysterysd._/
+GitHub: https://github.com/SilentDemonSD
+LinkedIn: https://www.linkedin.com/in/mysterysd/
+Email: subhadipdawn.sd@gmail.com
+
+================================================================================
+JUNIOR MEMBER – TANISHKA JAIN
+================================================================================
+
+Name: Tanishka Jain
+Role: Junior Member, INTELLIA
+Area: Event Management
+Contribution: Coordinates event logistics, participant support, and operational tasks.
+
+GitHub: https://github.com/tanishkaj538
+LinkedIn: https://www.linkedin.com/in/tanishka-jain-b1b648345
+Email: tanishka.jain.cseai.2024@gmail.com
+
+================================================================================
+JUNIOR MEMBER – HARSH MAVI
+================================================================================
+
+Name: Harsh Mavi
+Role: Junior Member, INTELLIA
+Area: Field Management
+Contribution: Coordinates on-ground operations and logistical support during events.
+
+Instagram: https://www.instagram.com/harshmavi.__
+LinkedIn: https://www.linkedin.com/in/harsh-mavi-83944b380
+Email: harsh.mavi.cseai.2024@miet.ac.in
+
+================================================================================
+JUNIOR MEMBER – VANSH
+================================================================================
+
+Name: Vansh
+Role: Junior Member, INTELLIA
+Area: Field Management
+Contribution: Coordinates event activities and supports operational execution.
+
+Instagram: https://www.instagram.com/vanshrajput1127
+LinkedIn: https://www.linkedin.com/in/vansh-4a7a09386
+Email: vansh.cseaiml.2024@miet.ac.in
+
+================================================================================
+JUNIOR MEMBER – AANYA JAIN
+================================================================================
+
+Name: Aanya Jain
+Role: Junior Member, INTELLIA
+Area: Outreach
+Contribution: Manages communication with participants, students, and external communities.
+
+GitHub: https://github.com/Aanyaj30
+LinkedIn: https://www.linkedin.com/in/aanya-jain-b10140345
+Email: aanya.jain.cseaiml.2024@miet.ac.in
+
+================================================================================
+JUNIOR MEMBER – AMANDEEP KAUR
+================================================================================
+
+Name: Amandeep Kaur
+Role: Junior Member, INTELLIA
+Area: Outreach
+Contribution: Participant communication, collaboration opportunities, and promotional initiatives.
+
+Instagram: https://www.instagram.com/amxn.chaos
+GitHub: https://github.com/amxnchaos
+LinkedIn: https://www.linkedin.com/in/amandeep-kaur-918349325
+Email: amandeep.kaur.cseai.2024@miet.ac.in
+
+================================================================================
+JUNIOR MEMBER – PRATIGYA YADAV
+================================================================================
+
+Name: Pratigya Yadav
+Role: Junior Member, INTELLIA
+Area: Public Relations
+Contribution: Manages communication with participants and maintains public image of INTELLIA.
+
+LinkedIn: https://www.linkedin.com/in/pratigya-yadav-00099a389
+Email: pratigya.yadav.cseaiml.2024@miet.ac.in
+
+================================================================================
+JUNIOR MEMBER – VAIBHAVI CHAUDHARY
+================================================================================
+
+Name: Vaibhavi Chaudhary
+Role: Junior Member, INTELLIA
+Area: Public Relations
+Contribution: Outreach communication and media coordination.
+
+GitHub: https://github.com/chaudharyvaibhavi2324-source
+LinkedIn: https://www.linkedin.com/in/vaibhavi-chaudhary-184918327
+Email: vaibhavi.chaudhary.cseai.2024@miet.ac.in
+
+================================================================================
+JUNIOR MEMBER – AYUSHI JAIN
+================================================================================
+
+Name: Ayushi Jain
+Role: Junior Member, INTELLIA
+Area: Craft and Decoration
+Contribution: Designs and prepares visual elements and decorative materials for events.
+
+Instagram: https://www.instagram.com/ayushiii.jain_
+LinkedIn: https://www.linkedin.com/in/ayushi-jain-118a40389
+Email: Ayushi1502jain@gmail.com
+
+================================================================================
+JUNIOR MEMBER – RIYA TYAGI
+================================================================================
+
+Name: Riya Tyagi
+Role: Junior Member, INTELLIA
+Area: Craft and Decoration
+Contribution: Prepares event decorations and creative setups.
+
+LinkedIn: https://www.linkedin.com/in/riya-tyagi-0a3271345
+Email: riyatyagi016@gmail.com
+
+================================================================================
+JUNIOR MEMBER – GARVIT VIG
+================================================================================
+
+Name: Garvit Vig
+Role: Junior Member, INTELLIA
+Area: Creativity
+Contribution: Creative content and ideas for promotional materials and event presentations.
+
+Instagram: https://www.instagram.com/mnv_._pvt
+LinkedIn: https://www.linkedin.com/in/garvit-vig
+Email: garvitvig30@gmail.com
+
+================================================================================
+JUNIOR MEMBER – GUNGUN RAWAT
+================================================================================
+
+Name: Gungun Rawat
+Role: Junior Member, INTELLIA
+Area: Cultural and Creative Activities
+Contribution: Supports event engagement and cultural initiatives.
+
+Instagram: https://www.instagram.com/ikrawatttt
+GitHub: https://github.com/rawatttt12
+LinkedIn: https://www.linkedin.com/in/gungun-rawat-3a8822388
+Email: gungun12225@gmail.com
+
+================================================================================
+JUNIOR MEMBER – ADITYA SHARMA
+================================================================================
+
+Name: Aditya Sharma
+Role: Junior Member, INTELLIA
+Area: Graphic Design
+Contribution: Creates visual assets, posters, and design materials for events and campaigns.
+
+LinkedIn: https://www.linkedin.com/in/aditya-sharma-27aaa2278
+Email: anc769035@gmail.com
+
+================================================================================
+JUNIOR MEMBER – NIKUNJ GOEL
+================================================================================
+
+Name: Nikunj Goel
+Role: Junior Member, INTELLIA
+Area: Media
+Contribution: Media coverage, photography, and documentation of events.
+
+Instagram: https://www.instagram.com/nikunj0101
+LinkedIn: https://www.linkedin.com/in/nikunj-goel-71533037a
+Email: nikunjg729@gmail.com
+
+================================================================================
+JUNIOR MEMBER – UJJWAL SHARMA
+================================================================================
+
+Name: Ujjwal Sharma
+Role: Junior Member, INTELLIA
+Area: Media
+Contribution: Captures event moments, manages media content, and supports digital documentation.
+
+Instagram: https://www.instagram.com/ujjwal_pratap_kaushik
+LinkedIn: https://www.linkedin.com/in/ujjwal-sharma-b9a270346
+Email: ujjwal.pankaj.cse.2024@miet.ac.in

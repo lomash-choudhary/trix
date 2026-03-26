@@ -1,24 +1,23 @@
 """
 ================================================================================
-  TRIX — AI Chatbot for Trikon 3.0   |   FIXED VERSION
-  Stack: Flask + LangChain + Google Gemini + FAISS
+  TRIX — AI Chatbot for Trikon 3.0   |   GROQ VERSION
+  Stack: Flask + LangChain + Groq (LLaMA 3.3) + Google Embeddings + FAISS
 ================================================================================
 
-WHAT WAS BROKEN (summary):
-  ❌ /initialize returned an HTML redirect instead of JSON
-     → React's fetch() got HTML back, data.initialized was undefined → always failed
-  ❌ /initialize reset qa_system=None even if it was already loaded
-     → Every chat open triggered a 60-90 second reload
-  ❌ No idempotency: calling /initialize twice started two background threads
-  ❌ CORS not configured with explicit origins for Render deployment
+CHANGES FROM PREVIOUS VERSION:
+  ✅ Replaced ChatGoogleGenerativeAI with ChatGroq (llama-3.3-70b-versatile)
+  ✅ Kept GoogleGenerativeAIEmbeddings (embeddings only run once at startup,
+     well within free tier limits — no quota issues)
+  ✅ Updated env vars: GROQ_API_KEY replaces GOOGLE_API_KEY for LLM calls
+  ✅ Both GROQ_API_KEY and GOOGLE_API_KEY required in .env
 
 HOW TO RUN:
   1. pip install -r requirements.txt
   2. Fill in your .env file:
-       GOOGLE_API_KEY=your_key_here
+       GROQ_API_KEY=gsk_xxxxxxxxxxxxxxxx
+       GOOGLE_API_KEY=your_google_key_here
        DOCUMENT_PATH=knowledge.txt
   3. python server2.py
-  4. Frontend: update fetch URLs to http://localhost:5000 (or your Render URL)
 ================================================================================
 """
 
@@ -38,7 +37,8 @@ from flask_cors import CORS
 from langchain_community.document_loaders import TextLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import FAISS
-from langchain_google_genai import GoogleGenerativeAIEmbeddings, ChatGoogleGenerativeAI
+from langchain_google_genai import GoogleGenerativeAIEmbeddings
+from langchain_groq import ChatGroq
 from langchain.chains import RetrievalQA
 from langchain.prompts import PromptTemplate
 
@@ -56,13 +56,18 @@ logger = logging.getLogger(__name__)
 
 load_dotenv()
 
+GROQ_API_KEY = os.getenv("GROQ_API_KEY", "").strip()
+if not GROQ_API_KEY:
+    logger.error("❌  GROQ_API_KEY is missing from your .env file!")
+    sys.exit(1)
+logger.info("✅  Groq API key loaded.")
+
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY", "").strip()
 if not GOOGLE_API_KEY:
-    logger.error("❌  GOOGLE_API_KEY is missing from your .env file!")
+    logger.error("❌  GOOGLE_API_KEY is missing from your .env file! (needed for embeddings)")
     sys.exit(1)
-
 os.environ["GOOGLE_API_KEY"] = GOOGLE_API_KEY
-logger.info("✅  Google API key loaded.")
+logger.info("✅  Google API key loaded (embeddings only).")
 
 DOCUMENT_PATH = os.getenv("DOCUMENT_PATH", "").strip()
 if not DOCUMENT_PATH:
@@ -73,11 +78,11 @@ if not DOCUMENT_PATH:
 # ── 3. CONFIG
 # ══════════════════════════════════════════════════════════════════════════════
 
-GEMINI_MODEL     = "gemini-2.5-flash"
-EMBEDDING_MODEL  = os.getenv("EMBEDDING_MODEL", "models/gemini-embedding-001").strip()
-TOP_K_CHUNKS     = 4
-CHUNK_SIZE       = 800
-CHUNK_OVERLAP    = 150
+GROQ_MODEL      = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile").strip()
+EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "models/gemini-embedding-001").strip()
+TOP_K_CHUNKS    = 4
+CHUNK_SIZE      = 800
+CHUNK_OVERLAP   = 150
 
 TRIX_PROMPT_TEMPLATE = """
 You are Trix, the official AI assistant and mascot of Trikon 2025 hackathon!
@@ -145,7 +150,7 @@ def load_and_process_document(file_path):
 
 
 # ══════════════════════════════════════════════════════════════════════════════
-# ── 5. VECTOR STORE
+# ── 5. VECTOR STORE (Google Embeddings — runs once at startup only)
 # ══════════════════════════════════════════════════════════════════════════════
 
 def create_vector_store(chunks):
@@ -172,15 +177,15 @@ def create_vector_store(chunks):
 
 
 # ══════════════════════════════════════════════════════════════════════════════
-# ── 6. QA CHAIN
+# ── 6. QA CHAIN (Groq LLaMA — handles all chat requests)
 # ══════════════════════════════════════════════════════════════════════════════
 
 def create_qa_chain(vector_store):
-    logger.info(f"🤖 Initializing Gemini model: {GEMINI_MODEL}")
+    logger.info(f"🤖 Initializing Groq model: {GROQ_MODEL}")
 
-    llm = ChatGoogleGenerativeAI(
-        model=GEMINI_MODEL,
-        google_api_key=GOOGLE_API_KEY,
+    llm = ChatGroq(
+        model=GROQ_MODEL,
+        api_key=GROQ_API_KEY,
         temperature=0,
     )
 
@@ -207,20 +212,16 @@ def create_qa_chain(vector_store):
 
 app = Flask(__name__)
 
-# ── FIX: Explicit CORS config so Render + any frontend domain works ──────────
-# Replace "*" with your actual frontend URL in production, e.g.:
-# origins=["https://your-nextjs-site.vercel.app", "http://localhost:3001"]
 CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=False)
 
 # ── Global State ──────────────────────────────────────────────────────────────
 qa_system            = None
 is_initializing      = False
 initialization_error = None
-_init_lock           = threading.Lock()   # FIX: prevents two threads starting at once
+_init_lock           = threading.Lock()
 
 
 def run_initialization():
-    """Loads document, builds vector store, creates QA chain. Runs in background thread."""
     global qa_system, is_initializing, initialization_error
 
     logger.info("━" * 60)
@@ -231,14 +232,14 @@ def run_initialization():
         logger.info("[1/3] Loading knowledge base document...")
         chunks = load_and_process_document(DOCUMENT_PATH)
 
-        logger.info("[2/3] Building vector store...")
+        logger.info("[2/3] Building vector store (Google Embeddings)...")
         vector_store = create_vector_store(chunks)
 
-        logger.info("[3/3] Setting up QA chain with Gemini...")
+        logger.info("[3/3] Setting up QA chain with Groq LLaMA...")
         qa_system = create_qa_chain(vector_store)
 
         initialization_error = None
-        logger.info("🎉 Trix is READY!")
+        logger.info("🎉 Trix is READY! (powered by Groq)")
 
     except Exception as e:
         initialization_error = str(e)
@@ -253,24 +254,25 @@ def run_initialization():
 
 @app.route("/", methods=["GET"])
 def index():
-    """Basic root endpoint so opening / in browser doesn't return 404."""
     return jsonify({
         "service": "TRIX Chatbot API",
         "message": "Server is running.",
+        "llm": f"Groq / {GROQ_MODEL}",
+        "embeddings": f"Google / {EMBEDDING_MODEL}",
         "endpoints": {
-            "health": {"method": "GET", "path": "/health"},
+            "health":     {"method": "GET",  "path": "/health"},
             "initialize": {"method": "POST", "path": "/initialize"},
             "ask": {
                 "method": "POST",
-                "path": "/ask",
-                "body": {"question": "What time does registration start?"},
+                "path":   "/ask",
+                "body":   {"question": "What time does registration start?"},
             },
         },
     })
 
+
 @app.route("/health", methods=["GET"])
 def health():
-    """Health check. GET /health"""
     if initialization_error:
         status = "error"
     elif is_initializing:
@@ -281,62 +283,35 @@ def health():
         status = "not_started"
 
     return jsonify({
-        "status": status,
-        "is_ready": qa_system is not None,
+        "status":         status,
+        "is_ready":       qa_system is not None,
         "is_initializing": is_initializing,
-        "model": GEMINI_MODEL,
-        "error": initialization_error,
+        "llm_model":      GROQ_MODEL,
+        "error":          initialization_error,
     })
 
 
-# ══════════════════════════════════════════════════════════════════════════════
-# ── FIX: /initialize now returns JSON, not an HTML redirect
-#    React expects: { "initialized": true }
-#    OLD: redirect(url_for("index"))  ← HTML, completely wrong for fetch()
-#    NEW: jsonify({"initialized": True})  ← JSON that React can actually read
-# ══════════════════════════════════════════════════════════════════════════════
-
 @app.route("/initialize", methods=["POST"])
 def initialize():
-    """
-    Called by React when the chat bubble is opened.
-
-    FIXED BEHAVIOUR:
-    - If already initialized → immediately return { "initialized": true }
-      (no reload, no wasted 60-90 seconds)
-    - If currently initializing → return { "initialized": false, "status": "initializing" }
-    - If not started → start background thread and return { "initialized": false, "status": "starting" }
-
-    REQUEST: POST /initialize  (empty body is fine)
-    RESPONSE: { "initialized": true | false, "status": "ready|initializing|starting|error" }
-    """
     global is_initializing, initialization_error, qa_system
 
-    # ── Already ready? Just say so — don't reload ────────────────────────────
     if qa_system is not None:
-        return jsonify({
-            "initialized": True,
-            "status": "ready",
-        })
+        return jsonify({"initialized": True, "status": "ready"})
 
-    # ── Already loading? Tell the client to wait ─────────────────────────────
     if is_initializing:
         return jsonify({
             "initialized": False,
-            "status": "initializing",
-            "message": "Trix is still starting up. Try again in a few seconds.",
+            "status":      "initializing",
+            "message":     "Trix is still starting up. Try again in a few seconds.",
         })
 
-    # ── Start initialization in background thread ────────────────────────────
     with _init_lock:
-        # Double-check after acquiring lock (another request might have started it)
         if is_initializing or qa_system is not None:
             return jsonify({
                 "initialized": qa_system is not None,
-                "status": "ready" if qa_system else "initializing",
+                "status":      "ready" if qa_system else "initializing",
             })
-
-        is_initializing = True
+        is_initializing      = True
         initialization_error = None
 
     t = threading.Thread(target=run_initialization, daemon=True)
@@ -345,42 +320,28 @@ def initialize():
 
     return jsonify({
         "initialized": False,
-        "status": "starting",
-        "message": "Trix is warming up! This takes about 60 seconds. Keep polling.",
+        "status":      "starting",
+        "message":     "Trix is warming up! This takes about 30 seconds. Keep polling.",
     })
 
 
 @app.route("/ask", methods=["POST"])
 def ask_api():
-    """
-    Answers a question from the React chat widget.
-
-    REQUEST (JSON):  { "question": "What time does registration start?" }
-    RESPONSE (JSON): { "answer": "Registration starts at 9 AM! 🎉" }
-
-    ERROR RESPONSES:
-      503 → Still initializing (client should retry after a delay)
-      500 → System not ready or internal error
-      400 → Missing or empty question field
-    """
-    # ── Guard: still loading ──────────────────────────────────────────────────
     if is_initializing:
         return jsonify({
-            "status": "initializing",
+            "status":  "initializing",
             "message": "Trix is still starting up. Try again in a moment.",
         }), 503
 
-    # ── Guard: not ready ─────────────────────────────────────────────────────
     if not qa_system:
         return jsonify({
             "error": initialization_error or "QA system is not initialized. Call /initialize first.",
         }), 500
 
-    # ── Parse request ─────────────────────────────────────────────────────────
     data = request.get_json(silent=True)
     if not data or "question" not in data:
         return jsonify({
-            "error": "Request body must be JSON with a 'question' field.",
+            "error":   "Request body must be JSON with a 'question' field.",
             "example": {"question": "What time does the hackathon start?"},
         }), 400
 
@@ -388,7 +349,6 @@ def ask_api():
     if not question:
         return jsonify({"error": "Question cannot be empty."}), 400
 
-    # ── Ask Trix ──────────────────────────────────────────────────────────────
     logger.info(f"❓ Question: {question[:80]}...")
     try:
         result = qa_system.invoke({"query": question})
@@ -406,7 +366,6 @@ def ask_api():
 # ══════════════════════════════════════════════════════════════════════════════
 
 if __name__ == "__main__":
-    # Auto-start initialization on server boot
     is_initializing = True
     threading.Thread(target=run_initialization, daemon=True).start()
 
