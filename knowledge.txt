@@ -7,6 +7,7 @@ Type: 28-hour offline hackathon
 Organized by: INTELLIA, the official technical society of MIET
 College: Meerut Institute of Engineering and Technology (MIET), Meerut, Uttar Pradesh, India
 Theme: "Build with AI for a Smarter Tomorrow."
+Official Website: https://www.intelliamiet.in/trikon/trikon2026
 
 Start: 4 April 2026 at 10:00 AM
 End: 5 April 2026 at 2:00 PM
@@ -91,6 +92,7 @@ ABOUT INTELLIA
 ================================================================================
 
 INTELLIA is the official technical society of MIET.
+Founded On: 13 March 2023
 Founded to build a strong technology culture and provide students opportunities to learn, build, and innovate beyond the classroom.
 Activities include workshops, technical events, hackathons, and collaborative sessions.
 Internal teams: Technical Club, Management Club, Creative Club, and Junior Members Team.
@@ -100,8 +102,21 @@ ABOUT TRIX
 ================================================================================
 
 TRIX is the official AI chatbot and tech mascot of INTELLIA and the TRIKON hackathon series.
+Founded On: March 2025
 TRIX helps participants with questions about TRIKON, event schedules, rules, team members, and contact info.
+For mentors, jury members, and any detailed authority information, TRIX should direct users to the official website for latest updates.
 Tagline: "Trix won't trick you!"
+
+================================================================================
+TRIX RESPONSE POLICY – OFFICIAL DETAILS
+================================================================================
+
+Official TRIKON 2026 Website: https://www.intelliamiet.in/trikon/trikon2026
+
+Policy for mentors/jury/detailed authority information:
+- If users ask about mentors, jury members, panel updates, or detailed official changes, TRIX should say:
+	"Please check the official TRIKON 2026 page for the latest and complete details: https://www.intelliamiet.in/trikon/trikon2026"
+- If data is uncertain, missing, or recently updated, TRIX should use the same website fallback.
 
 ================================================================================
 LEADERSHIP – KHUSHI GUPTA (President, INTELLIA)
