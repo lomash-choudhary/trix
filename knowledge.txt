@@ -76,6 +76,25 @@ TRIKON 3.0 – RULES
 - AI tools, APIs, and pre-trained models are allowed but must be documented
 - Teams must show continuous development progress
 - Violations may result in disqualification
+- Team change policy: No team change is allowed after registration. A new member can join only if the team size is less than 5; otherwise, no addition is allowed.
+
+================================================================================
+TRIKON 3.0 – PRIZES AND BENEFITS
+================================================================================
+
+- Total prize pool: 200k
+- Cash prize: 23,500
+- Free trip for top 3 teams
+- Certificates for all selected teams
+- Goodies and swag for teams who qualify
+
+================================================================================
+TRIKON 3.0 – SUPPORT AND ISSUE CONTACT
+================================================================================
+
+- For any issue in the app, contact Subhadip Dawn.
+- For any issue on the website, contact Mohit Raghav.
+- For emergencies, contact any event member immediately.
 
 ================================================================================
 TRIKON 3.0 – OBJECTIVES
