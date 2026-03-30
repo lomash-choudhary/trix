@@ -1,8 +1,8 @@
-# 🔺 Trix - AI-Powered Chatbot for Trikon 2.0
+# 🔺 Trix - AI-Powered Chatbot for Trikon 3.0
 
 **Trix won't trick you!** 🤖
 
-Trix is an intelligent AI chatbot designed as the official virtual assistant for Trikon 2.0 hackathon. Built using Retrieval Augmented Generation (RAG) architecture, Trix provides context-aware, personalized responses to help participants navigate the event seamlessly.
+Trix is an intelligent AI chatbot designed as the official virtual assistant for Trikon 3.0 hackathon. Built using Retrieval Augmented Generation (RAG) architecture, Trix provides context-aware, personalized responses to help participants navigate the event seamlessly.
 
 ## 🚀 Features
 
@@ -31,23 +31,27 @@ Trix is an intelligent AI chatbot designed as the official virtual assistant for
 ## 🔧 Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/yourusername/trix-chatbot.git
    cd trix-chatbot
    ```
 
 2. **Create virtual environment**
+
    ```bash
    python -m venv venv
    source venv/bin/activate  # On Windows: venv\Scripts\activate
    ```
 
 3. **Install dependencies**
+
    ```bash
    pip install -r requirements.txt
    ```
 
 4. **Create requirements.txt**
+
    ```bash
    langchain
    langchain-google-genai
@@ -59,8 +63,9 @@ Trix is an intelligent AI chatbot designed as the official virtual assistant for
    ```
 
 5. **Set up environment variables**
-   
+
    Create a `.env` file in the project root:
+
    ```env
    GOOGLE_API_KEY=your_google_api_key_here
    DOCUMENT_PATH=path/to/your/document.txt
@@ -88,6 +93,7 @@ The application will be available at `http://localhost:5000`
 ### API Usage
 
 **Ask a question:**
+
 ```bash
 curl -X POST http://localhost:5000/ask \
   -H "Content-Type: application/json" \
@@ -95,6 +101,7 @@ curl -X POST http://localhost:5000/ask \
 ```
 
 **Health check:**
+
 ```bash
 curl http://localhost:5000/health
 ```
@@ -113,24 +120,26 @@ trix-chatbot/
 
 ## 🎯 API Endpoints
 
-| Endpoint | Method | Description |
-|----------|--------|-------------|
-| `/` | GET | Web interface |
-| `/ask` | POST | Ask questions programmatically |
-| `/health` | GET | System health check |
-| `/initialize` | POST | Initialize/restart the system |
+| Endpoint      | Method | Description                    |
+| ------------- | ------ | ------------------------------ |
+| `/`           | GET    | Web interface                  |
+| `/ask`        | POST   | Ask questions programmatically |
+| `/health`     | GET    | System health check            |
+| `/initialize` | POST   | Initialize/restart the system  |
 
 ## 🔧 Configuration
 
 ### Model Options
 
 You can customize the Gemini model in `create_qa_chain()`:
+
 - `gemini-1.5-flash` - Fast and efficient (default)
 - `gemini-1.5-pro` - Higher quality responses
 
 ### Document Processing
 
 Adjust text splitting parameters in `load_and_process_document()`:
+
 - `chunk_size`: Size of each text chunk (default: 1000)
 - `chunk_overlap`: Overlap between chunks (default: 200)
 
@@ -139,6 +148,7 @@ Adjust text splitting parameters in `load_and_process_document()`:
 ### Personality
 
 Modify Trix's personality in the prompt template within `create_qa_chain()`. The current setup makes Trix:
+
 - Fun and resourceful
 - High humor
 - Explains things simply (like talking to a 5-year-old)
@@ -157,6 +167,7 @@ Update the `HTML_TEMPLATE` in `app.py` to customize the web interface appearance
 4. **Memory Issues**: Use `faiss-cpu` instead of `faiss-gpu` for CPU-only setups
 
 **Debug Mode:**
+
 ```bash
 export FLASK_ENV=development
 python app.py
@@ -183,7 +194,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-- **Trikon 2.0** - The hackathon that inspired this project
+- **Trikon 3.0** - The hackathon that inspired this project
 - **DevInt & Intellia** - Technical core team
 - **Google Gemini** - AI language model
 - **LangChain** - RAG framework
@@ -192,7 +203,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📈 Future Enhancements
 
 - [ ] Multi-language support
-- [ ] Voice interaction capabilities  
+- [ ] Voice interaction capabilities
 - [ ] Advanced analytics dashboard
 - [ ] Mobile app integration
 - [ ] Real-time event updates
@@ -200,4 +211,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**"Trix won't trick you!"** - Built with ❤️ for Trikon 2.0
+**"Trix won't trick you!"** - Built with ❤️ for Trikon 3.0

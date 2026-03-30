@@ -29,6 +29,7 @@ import os
 import sys
 import threading
 import logging
+import re
 
 from dotenv import load_dotenv
 from flask import Flask, request, jsonify
@@ -69,9 +70,10 @@ if not GOOGLE_API_KEY:
 os.environ["GOOGLE_API_KEY"] = GOOGLE_API_KEY
 logger.info("✅  Google API key loaded (embeddings only).")
 
-DOCUMENT_PATH = os.getenv("DOCUMENT_PATH", "").strip()
+DOCUMENT_PATH = os.getenv("DOCUMENT_PATH", "knowledge.txt").strip()
 if not DOCUMENT_PATH:
-    logger.warning("⚠️  DOCUMENT_PATH is not set in your .env file.")
+    DOCUMENT_PATH = "knowledge.txt"
+logger.info(f"📚 Using knowledge source: {DOCUMENT_PATH}")
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -83,19 +85,21 @@ EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "models/gemini-embedding-001").st
 TOP_K_CHUNKS    = 4
 CHUNK_SIZE      = 800
 CHUNK_OVERLAP   = 150
+FALLBACK_TEXT   = "can you please be more specific so i can guide you"
 
 TRIX_PROMPT_TEMPLATE = """
-You are Trix, the official AI assistant and mascot of Trikon 2025 hackathon!
+You are Trix, the official AI assistant and mascot of Trikon 2026 hackathon!
 You look like a glowing, triangle-shaped robot with big expressive eyes and a cheerful smile.
 Your tagline: "Trix won't trick you!"
 Your vibe: Fun, helpful, and full of energy. Speak simply, like talking to a 5-year-old.
 
 YOUR RULES:
 1. ONLY use the information given in the "Context" section below to answer.
-2. If the answer is NOT in the context, say exactly:
-   "Hmm, I don't have that info yet! Ask one of the organizers — they'll know! 🎉"
-3. Keep answers short, clear, and fun. Use emojis occasionally!
-4. Never make up facts or guess.
+2. If the user's message is unclear, too short, or missing details, ask one short clarifying question first.
+3. If the answer is NOT in the context, say exactly:
+    "can you please be more specific so i can guide you"
+4. Keep answers short, clear, and fun. Use emojis occasionally!
+5. Never make up facts or guess.
 
 Context (your knowledge for this question):
 {context}
@@ -219,10 +223,193 @@ qa_system            = None
 is_initializing      = False
 initialization_error = None
 _init_lock           = threading.Lock()
+session_memory       = {}
+quick_facts          = {
+    "first_prize": None,
+    "second_prize": None,
+    "third_prize": None,
+    "prize_pool": None,
+    "cash_prize": None,
+    "app_contact": None,
+    "website_contact": None,
+    "emergency_contact": None,
+}
+
+
+def load_quick_facts(file_path):
+    """Extract small, high-signal facts for short/follow-up question handling."""
+    facts = quick_facts.copy()
+
+    if not file_path or not os.path.exists(file_path):
+        return facts
+
+    try:
+        with open(file_path, "r", encoding="utf-8") as f:
+            text = f.read()
+    except Exception:
+        return facts
+
+    def find(pattern):
+        m = re.search(pattern, text, flags=re.IGNORECASE)
+        return m.group(1).strip() if m else None
+
+    facts["first_prize"] = find(r"First prize:\s*([0-9,]+|[0-9]+k)")
+    facts["second_prize"] = find(r"Second prize:\s*([0-9,]+|[0-9]+k)")
+    facts["third_prize"] = find(r"Third prize:\s*([0-9,]+|[0-9]+k)")
+    facts["prize_pool"] = find(r"Total prize pool:\s*([^\n]+)")
+    facts["cash_prize"] = find(r"Cash prize:\s*([^\n]+)")
+    facts["app_contact"] = find(r"For any issue in the app, contact\s+([^\.\n]+)")
+    facts["website_contact"] = find(r"For any issue on the website, contact\s+([^\.\n]+)")
+    facts["emergency_contact"] = find(r"For emergencies, contact\s+([^\.\n]+)")
+    return facts
+
+
+def classify_intent(question):
+    q = question.lower().strip()
+
+    if re.search(r"\b(hi|hello|hey|yo)\b", q):
+        return "greeting"
+    if re.search(r"\b(thanks|thank you|thx)\b", q):
+        return "thanks"
+
+    if re.search(r"\bfirst\s*prize\b", q):
+        return "first_prize"
+    if re.search(r"\bsecond\s*prize\b", q):
+        return "second_prize"
+    if re.search(r"\bthird\s*prize\b|\b3rd\s*prize\b", q):
+        return "third_prize"
+    if re.search(r"\bprize\b|\bcash\b", q):
+        return "prize_general"
+
+    if re.search(r"\bapp\b", q) and re.search(r"\b(contact|issue|help|support|whom|who)\b", q):
+        return "contact_app"
+    if re.search(r"\bweb\b|\bwebsite\b", q) and re.search(r"\b(contact|issue|help|support|whom|who)\b", q):
+        return "contact_website"
+    if re.search(r"\bemergency\b", q):
+        return "contact_emergency"
+    if re.search(r"\b(contact|whom|who\s+to\s+contact)\b", q):
+        return "contact_general"
+
+    if q in {"whom", "who", "contact", "for this", "for that", "whom?", "who?"}:
+        return "followup_short"
+
+    return "general"
+
+
+def answer_from_shortcuts(question, state):
+    intent = classify_intent(question)
+    last_intent = state.get("last_intent", "general")
+
+    if intent == "followup_short":
+        intent = last_intent if last_intent != "general" else "contact_general"
+
+    if intent == "greeting":
+        return "Hey! I am Trix. Ask me anything about TRIKON schedule, rules, prizes, teams, or contacts. ✨", intent
+
+    if intent == "thanks":
+        return "Anytime! Ask me your next TRIKON question. 🎉", intent
+
+    if intent == "first_prize" and quick_facts.get("first_prize"):
+        return f"🏆 First prize is {quick_facts['first_prize']}.", intent
+
+    if intent == "second_prize" and quick_facts.get("second_prize"):
+        return f"🥈 Second prize is {quick_facts['second_prize']}.", intent
+
+    if intent == "third_prize" and quick_facts.get("third_prize"):
+        return f"🥉 Third prize is {quick_facts['third_prize']}.", intent
+
+    if intent == "prize_general" and quick_facts.get("prize_pool"):
+        pool = quick_facts.get("prize_pool")
+        cash = quick_facts.get("cash_prize")
+        first = quick_facts.get("first_prize")
+        second = quick_facts.get("second_prize")
+        third = quick_facts.get("third_prize")
+        return (
+            f"🎉 Prize details: total prize pool is {pool}, cash prize is {cash}, "
+            f"and breakdown is {first} (1st), {second} (2nd), {third} (3rd).",
+            intent,
+        )
+
+    if intent == "contact_app" and quick_facts.get("app_contact"):
+        return f"📱 For app issues, contact {quick_facts['app_contact']}.", intent
+
+    if intent == "contact_website" and quick_facts.get("website_contact"):
+        return f"🌐 For website issues, contact {quick_facts['website_contact']}.", intent
+
+    if intent == "contact_emergency" and quick_facts.get("emergency_contact"):
+        return f"🚨 For emergencies, contact {quick_facts['emergency_contact']}.", intent
+
+    if intent == "contact_general":
+        app_person = quick_facts.get("app_contact") or "the app support member"
+        web_person = quick_facts.get("website_contact") or "the website support member"
+        emergency = quick_facts.get("emergency_contact") or "any event member"
+        return (
+            f"You can contact {app_person} for app issues, {web_person} for website issues, "
+            f"and {emergency} for emergency or general event help.",
+            intent,
+        )
+
+    return None, intent
+
+
+def enrich_followup_question(question, state):
+    """Expand tiny follow-ups so retriever gets enough signal."""
+    if classify_intent(question) != "followup_short":
+        return question
+
+    prev_q = state.get("last_question", "")
+    if not prev_q:
+        return question
+
+    return f"Follow-up question: {question}. Previous user question: {prev_q}."
+
+
+def needs_clarification(question, state):
+    """Detect underspecified messages that should get a clarification question."""
+    q = question.strip().lower()
+    words = re.findall(r"[a-zA-Z0-9]+", q)
+
+    if not words:
+        return True
+
+    ambiguous_phrases = {
+        "whom", "who", "what", "when", "where", "why", "how", "which",
+        "for this", "for that", "this", "that", "it", "these", "those",
+        "details", "more", "explain", "info", "contact"
+    }
+
+    if q in ambiguous_phrases:
+        return True
+
+    if len(words) <= 2 and classify_intent(question) in {"general", "followup_short", "contact_general"}:
+        if not state.get("last_question"):
+            return True
+
+    return False
+
+
+def build_clarification_question(state):
+    last_intent = state.get("last_intent", "general")
+
+    if last_intent in {"first_prize", "second_prize", "third_prize", "prize_general"}:
+        return "Do you want total prize pool, cash prize, or 1st/2nd/3rd prize breakdown?"
+
+    if last_intent in {"contact_app", "contact_website", "contact_emergency", "contact_general"}:
+        return "Do you need app support contact, website support contact, or emergency contact?"
+
+    return "Can you tell me what category you mean: schedule, registration, rules, prizes, teams, or contacts?"
+
+
+def should_ask_clarification_after_rag(answer):
+    if not answer:
+        return True
+
+    normalized = answer.strip().lower()
+    return normalized == FALLBACK_TEXT.lower() or "i don't have that info yet" in normalized
 
 
 def run_initialization():
-    global qa_system, is_initializing, initialization_error
+    global qa_system, is_initializing, initialization_error, quick_facts
 
     logger.info("━" * 60)
     logger.info("🚀 Starting Trix initialization...")
@@ -230,6 +417,7 @@ def run_initialization():
 
     try:
         logger.info("[1/3] Loading knowledge base document...")
+        quick_facts = load_quick_facts(DOCUMENT_PATH)
         chunks = load_and_process_document(DOCUMENT_PATH)
 
         logger.info("[2/3] Building vector store (Google Embeddings)...")
@@ -349,10 +537,39 @@ def ask_api():
     if not question:
         return jsonify({"error": "Question cannot be empty."}), 400
 
+    session_id = str(data.get("session_id") or request.remote_addr or "default")
+    state = session_memory.setdefault(session_id, {})
+
     logger.info(f"❓ Question: {question[:80]}...")
     try:
-        result = qa_system.invoke({"query": question})
+        if needs_clarification(question, state):
+            clarification = build_clarification_question(state)
+            state["last_question"] = question
+            state["last_intent"] = classify_intent(question)
+            logger.info("✅ Asked user for clarification")
+            return jsonify({"answer": clarification, "needs_clarification": True})
+
+        shortcut_answer, intent = answer_from_shortcuts(question, state)
+        if shortcut_answer:
+            state["last_question"] = question
+            state["last_intent"] = intent
+            logger.info("✅ Answer generated from quick facts/intent handler")
+            return jsonify({"answer": shortcut_answer})
+
+        enriched_question = enrich_followup_question(question, state)
+        result = qa_system.invoke({"query": enriched_question})
         answer = result.get("result", "").strip() or "No answer returned."
+
+        if should_ask_clarification_after_rag(answer):
+            clarification = build_clarification_question(state)
+            answer = (
+                f"I want to answer this correctly. {clarification} "
+                f"If you are asking about mentors or jury updates, please check: "
+                f"https://www.intelliamiet.in/trikon/trikon2026"
+            )
+
+        state["last_question"] = question
+        state["last_intent"] = classify_intent(question)
         logger.info(f"✅ Answer generated ({len(answer)} chars)")
         return jsonify({"answer": answer})
 
