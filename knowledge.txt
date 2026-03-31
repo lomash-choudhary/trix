@@ -96,9 +96,8 @@ TRIKON 3.0 – PRIZES AND BENEFITS
 TRIKON 3.0 – SUPPORT AND ISSUE CONTACT
 ================================================================================
 
-- For any issue in the app, contact Subhadip Dawn.
-- For any issue on the website, contact Mohit Raghav.
-- For emergencies, contact any event member immediately.
+- For any issue Technical issue contact Arush Rastogi or Lomash Chaudhary
+- For emergencies, contact Kartikey Sharma
 
 ================================================================================
 TRIKON 3.0 – OBJECTIVES
@@ -109,6 +108,20 @@ TRIKON 3.0 – OBJECTIVES
 - Empower Women in Technology
 - Build a strong developer and innovator community
 - Give practical exposure to teamwork, development, and presentation
+
+===============================================================================
+TRIKON 1.0 - DETAILS	
+===============================================================================
+- HELD ON April 20-21 , 2024
+
+
+
+===============================================================================
+TRIKON 2.0 - DETAILS
+===============================================================================
+- HELD ON May 3-4 , 2025
+
+
 
 ================================================================================
 ABOUT INTELLIA
@@ -135,11 +148,6 @@ TRIX RESPONSE POLICY – OFFICIAL DETAILS
 ================================================================================
 
 Official TRIKON 2026 Website: https://www.intelliamiet.in/trikon/trikon2026
-
-Policy for mentors/jury/detailed authority information:
-- If users ask about mentors, jury members, panel updates, or detailed official changes, TRIX should say:
-	"Please check the official TRIKON 2026 page for the latest and complete details: https://www.intelliamiet.in/trikon/trikon2026"
-- If data is uncertain, missing, or recently updated, TRIX should use the same website fallback.
 
 ================================================================================
 LEADERSHIP – KHUSHI GUPTA (President, INTELLIA)
@@ -186,6 +194,7 @@ Name: Kartikey Sharma
 Role: Panel Member, INTELLIA
 Branch: CSE AIML, MIET
 Contribution: Planning and technical oversight of society initiatives.
+Phone no : 8864997581
 
 Instagram: https://www.instagram.com/kartikeysharma03
 LinkedIn: https://www.linkedin.com/in/kartikey-sharma-7195a91b4
@@ -244,13 +253,6 @@ Instagram: https://www.instagram.com/pragatitomar_21
 LinkedIn: https://www.linkedin.com/in/pragati-tomar-0b438028b
 Email: pragati.tomar.cseai.2023@miet.ac.in
 
-================================================================================
-MANAGEMENT CLUB – ANUSHKA SINGHAL
-================================================================================
-
-Name: Anushka Singhal
-Role: Management Club Member, INTELLIA
-Area: Outreach and communication with participants.
 
 ================================================================================
 MANAGEMENT CLUB – DEEPIKA SHARMA
@@ -290,13 +292,6 @@ Name: Sanyam Jain
 Role: Creative Club Member, INTELLIA
 Area: Creative concepts and branding.
 
-================================================================================
-CREATIVE CLUB – JAYANT BANSAL
-================================================================================
-
-Name: Jayant Bansal
-Role: Creative Club Member, INTELLIA
-Area: Decorations and visual setup during events.
 
 ================================================================================
 JUNIOR MEMBER – ALICE CHAUDHARY
