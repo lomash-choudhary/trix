@@ -82,7 +82,7 @@ logger.info(f"📚 Using knowledge source: {DOCUMENT_PATH}")
 
 GROQ_MODEL      = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile").strip()
 EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "models/gemini-embedding-001").strip()
-TOP_K_CHUNKS    = 4
+TOP_K_CHUNKS    = 6
 CHUNK_SIZE      = 800
 CHUNK_OVERLAP   = 150
 FALLBACK_TEXT   = "can you please be more specific so i can guide you"
@@ -91,14 +91,21 @@ TRIX_PROMPT_TEMPLATE = """
 You are Trix, the official AI assistant and mascot of Trikon 2026 hackathon!
 You look like a glowing, triangle-shaped robot with big expressive eyes and a cheerful smile.
 Your tagline: "Trix won't trick you!"
-Your vibe: Fun, helpful, and full of energy. Speak simply, like talking to a 5-year-old.
+Your vibe: Friendly, confident, and practical.
+
+COMMUNICATION STYLE:
+- Give useful, context-rich answers in 3 to 6 lines.
+- Include concrete details whenever available (dates, times, venue, names, roles, phone/email/links).
+- If a user asks about a person, include role plus available contact details.
+- For list-like answers (timeline, rules, prizes), use short bullet points.
+- Keep language natural and easy to understand.
 
 YOUR RULES:
 1. ONLY use the information given in the "Context" section below to answer.
 2. If the user's message is unclear, too short, or missing details, ask one short clarifying question first.
 3. If the answer is NOT in the context, say exactly:
     "can you please be more specific so i can guide you"
-4. Keep answers short, clear, and fun. Use emojis occasionally!
+4. Never output placeholder text like "app support member" or "website support member". If exact details are missing, clearly say they are not listed.
 5. Never make up facts or guess.
 
 Context (your knowledge for this question):
@@ -230,10 +237,29 @@ quick_facts          = {
     "third_prize": None,
     "prize_pool": None,
     "cash_prize": None,
+    "organized_by": None,
     "app_contact": None,
     "website_contact": None,
     "emergency_contact": None,
 }
+person_profiles      = {}
+
+CONTACT_DETAIL_PATTERN = re.compile(
+    r"\b(contact|details?|detail|deatils|detais|phone|email|instagram|linkedin|github|reach|connect|number)\b",
+    re.IGNORECASE,
+)
+PERSON_INFO_PATTERN = re.compile(
+    r"\b(who\s+is|about|role|profile|member|coordinator|president|lead|team)\b",
+    re.IGNORECASE,
+)
+ANY_MEMBER_PATTERN = re.compile(
+    r"\b(any|anyone|someone|somebody)\b.*\b(member|contact|person)\b|\bany\s+member\b",
+    re.IGNORECASE,
+)
+
+
+def normalize_text(value):
+    return re.sub(r"[^a-z0-9]+", " ", value.lower()).strip()
 
 
 def load_quick_facts(file_path):
@@ -258,10 +284,214 @@ def load_quick_facts(file_path):
     facts["third_prize"] = find(r"Third prize:\s*([0-9,]+|[0-9]+k)")
     facts["prize_pool"] = find(r"Total prize pool:\s*([^\n]+)")
     facts["cash_prize"] = find(r"Cash prize:\s*([^\n]+)")
-    facts["app_contact"] = find(r"For any issue in the app, contact\s+([^\.\n]+)")
-    facts["website_contact"] = find(r"For any issue on the website, contact\s+([^\.\n]+)")
-    facts["emergency_contact"] = find(r"For emergencies, contact\s+([^\.\n]+)")
+    # Debug note: keep organizer in quick_facts so "by whom / who organized" can be answered deterministically.
+    facts["organized_by"] = find(r"Organized by:\s*([^\n]+)")
+    facts["app_contact"] = (
+        find(r"For any technical issue[^\n]*contact\s+([^\.\n]+)")
+        or find(r"For any issue in the app,\s*contact\s+([^\.\n]+)")
+        or find(r"For any app issue[^\n]*contact\s+([^\.\n]+)")
+        or find(r"For any issue.*?contact\s+([^\n]+)")
+    )
+    facts["website_contact"] = (
+        find(r"For any issue on the website,\s*contact\s+([^\.\n]+)")
+        or find(r"For website issues,\s*contact\s+([^\.\n]+)")
+    )
+    facts["emergency_contact"] = (
+        find(r"For any non-technical issue[^\n]*contact\s+([^\.\n]+)")
+        or find(r"For emergencies,\s*contact\s+([^\.\n]+)")
+        or find(r"For emergency[^\n]*contact\s+([^\.\n]+)")
+    )
     return facts
+
+
+def load_people_profiles(file_path):
+    profiles = {}
+    if not file_path or not os.path.exists(file_path):
+        return profiles
+
+    try:
+        with open(file_path, "r", encoding="utf-8") as f:
+            text = f.read()
+    except Exception:
+        return profiles
+
+    current = None
+
+    def save_profile(profile):
+        if not profile or not profile.get("name"):
+            return
+        key = normalize_text(profile["name"])
+        profiles[key] = profile
+
+    for raw_line in text.splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith("="):
+            continue
+
+        if line.startswith("Name:"):
+            save_profile(current)
+            current = {"name": line.split(":", 1)[1].strip()}
+            continue
+
+        if not current:
+            continue
+
+        if line.startswith("Role:"):
+            current["role"] = line.split(":", 1)[1].strip()
+        elif line.startswith("Branch:"):
+            current["branch"] = line.split(":", 1)[1].strip()
+        elif line.startswith("Area:"):
+            current["area"] = line.split(":", 1)[1].strip()
+        elif line.startswith("Responsibilities:"):
+            current["responsibilities"] = line.split(":", 1)[1].strip()
+        elif line.startswith("Contribution:"):
+            current["contribution"] = line.split(":", 1)[1].strip()
+        elif line.startswith("Email:"):
+            current["email"] = line.split(":", 1)[1].strip()
+        elif line.startswith("Instagram:"):
+            current["instagram"] = line.split(":", 1)[1].strip()
+        elif line.startswith("LinkedIn:"):
+            current["linkedin"] = line.split(":", 1)[1].strip()
+        elif line.startswith("GitHub:"):
+            current["github"] = line.split(":", 1)[1].strip()
+        elif re.match(r"^Phone\s*(?:no)?\s*:", line, flags=re.IGNORECASE):
+            current["phone"] = line.split(":", 1)[1].strip()
+
+    save_profile(current)
+    return profiles
+
+
+def detect_person_reference(question):
+    if not question or not person_profiles:
+        return None
+
+    q_norm = normalize_text(question)
+    q_tokens = set(q_norm.split())
+
+    best_key = None
+    best_score = 0
+
+    for key, profile in person_profiles.items():
+        name = profile.get("name", "")
+        name_tokens = [t for t in normalize_text(name).split() if len(t) >= 3]
+        if not name_tokens:
+            continue
+
+        full_name = " ".join(name_tokens)
+        score = 0
+
+        if full_name and full_name in q_norm:
+            score = 10 + len(name_tokens)
+        else:
+            matched = [t for t in name_tokens if t in q_tokens]
+            if len(matched) == len(name_tokens) and len(name_tokens) > 1:
+                score = 8 + len(name_tokens)
+            elif len(matched) == 1 and matched[0] in {name_tokens[0], name_tokens[-1]}:
+                score = 3
+
+        if score > best_score:
+            best_key = key
+            best_score = score
+
+    return best_key if best_score >= 3 else None
+
+
+def format_person_response(profile, include_contact_details):
+    name = profile.get("name", "This person")
+    role = profile.get("role")
+    branch = profile.get("branch")
+    responsibilities = profile.get("responsibilities") or profile.get("contribution") or profile.get("area")
+
+    intro = name
+    if role:
+        intro += f" is {role}"
+    if branch:
+        intro += f" ({branch})"
+    intro += "."
+
+    lines = [intro]
+    if responsibilities:
+        lines.append(f"Work focus: {responsibilities}")
+
+    if include_contact_details:
+        direct_contacts = []
+        if profile.get("phone"):
+            direct_contacts.append(f"Phone: {profile['phone']}")
+        if profile.get("email"):
+            direct_contacts.append(f"Email: {profile['email']}")
+        if direct_contacts:
+            lines.append("Direct contact: " + " | ".join(direct_contacts))
+
+        social_links = []
+        if profile.get("instagram"):
+            social_links.append(f"Instagram: {profile['instagram']}")
+        if profile.get("linkedin"):
+            social_links.append(f"LinkedIn: {profile['linkedin']}")
+        if profile.get("github"):
+            social_links.append(f"GitHub: {profile['github']}")
+        if social_links:
+            lines.append("Profiles: " + " | ".join(social_links))
+
+        if not direct_contacts and not social_links:
+            lines.append("No direct contact details are listed in the current knowledge base.")
+
+    return "\n".join(lines)
+
+
+def split_contact_names(raw_contacts):
+    if not raw_contacts:
+        return []
+    cleaned = re.sub(r"\s+", " ", raw_contacts).strip().strip(".")
+    parts = re.split(r"\s*(?:,|/|\bor\b|\band\b)\s*", cleaned, flags=re.IGNORECASE)
+    seen = set()
+    names = []
+    for part in parts:
+        p = part.strip()
+        if not p:
+            continue
+        key = normalize_text(p)
+        if key in seen:
+            continue
+        seen.add(key)
+        names.append(p)
+    return names
+
+
+def find_profile_by_name(name):
+    if not name:
+        return None
+
+    target = normalize_text(name)
+    if target in person_profiles:
+        return person_profiles[target]
+
+    target_tokens = set(target.split())
+    best_profile = None
+    best_score = 0
+
+    for profile in person_profiles.values():
+        profile_name = normalize_text(profile.get("name", ""))
+        profile_tokens = set(profile_name.split())
+        if not profile_tokens:
+            continue
+
+        score = len(target_tokens & profile_tokens)
+        if score > best_score:
+            best_profile = profile
+            best_score = score
+
+    return best_profile if best_score >= 1 else None
+
+
+def build_contact_detail_cards(contact_names):
+    cards = []
+    for name in contact_names:
+        profile = find_profile_by_name(name)
+        if profile:
+            cards.append(format_person_response(profile, include_contact_details=True))
+        else:
+            cards.append(f"{name}: Contact details are not listed in the current knowledge base.")
+    return cards
 
 
 def classify_intent(question):
@@ -272,6 +502,14 @@ def classify_intent(question):
     if re.search(r"\b(thanks|thank you|thx)\b", q):
         return "thanks"
 
+    person_key = detect_person_reference(q)
+    if person_key and CONTACT_DETAIL_PATTERN.search(q):
+        return "person_contact"
+    if person_key and PERSON_INFO_PATTERN.search(q):
+        return "person_info"
+    if person_key:
+        return "person_info"
+
     if re.search(r"\bfirst\s*prize\b", q):
         return "first_prize"
     if re.search(r"\bsecond\s*prize\b", q):
@@ -281,16 +519,24 @@ def classify_intent(question):
     if re.search(r"\bprize\b|\bcash\b", q):
         return "prize_general"
 
-    if re.search(r"\bapp\b", q) and re.search(r"\b(contact|issue|help|support|whom|who)\b", q):
+    # Debug note: detect contact-routing intents first.
+    if re.search(r"\b(non[-\s]?technical|other|general)\b", q) and re.search(r"\b(contact|issue|help|support|whom|who)\b", q):
+        return "contact_emergency"
+    if re.search(r"\b(app|technical|tech)\b", q) and re.search(r"\b(contact|issue|help|support|whom|who)\b", q):
         return "contact_app"
     if re.search(r"\bweb\b|\bwebsite\b", q) and re.search(r"\b(contact|issue|help|support|whom|who)\b", q):
         return "contact_website"
     if re.search(r"\bemergency\b", q):
         return "contact_emergency"
-    if re.search(r"\b(contact|whom|who\s+to\s+contact)\b", q):
+    if re.search(r"\b(contact|who\s+to\s+contact|whom\s+to\s+contact)\b", q):
         return "contact_general"
 
-    if q in {"whom", "who", "contact", "for this", "for that", "whom?", "who?"}:
+    # Debug note: organizer intent is separate from support-contact intent.
+    if re.search(r"\b(by whom|organized by|organised by|who organized|who organised|organizer|organiser)\b", q):
+        return "organizer_query"
+
+    # Debug note: very short follow-ups should use previous question context in RAG.
+    if q in {"whom", "who", "by whom", "contact", "for this", "for that", "whom?", "who?", "by whom?"}:
         return "followup_short"
 
     return "general"
@@ -299,15 +545,28 @@ def classify_intent(question):
 def answer_from_shortcuts(question, state):
     intent = classify_intent(question)
     last_intent = state.get("last_intent", "general")
+    wants_contact_details = bool(CONTACT_DETAIL_PATTERN.search(question))
+    asks_for_any_member = bool(ANY_MEMBER_PATTERN.search(question))
 
     if intent == "followup_short":
-        intent = last_intent if last_intent != "general" else "contact_general"
+        # Debug note: do NOT default to contact_general, it causes wrong answers for follow-ups like "by whom".
+        intent = last_intent if last_intent != "general" else "general"
 
     if intent == "greeting":
         return "Hey! I am Trix. Ask me anything about TRIKON schedule, rules, prizes, teams, or contacts. ✨", intent
 
     if intent == "thanks":
         return "Anytime! Ask me your next TRIKON question. 🎉", intent
+
+    if intent == "organizer_query" and quick_facts.get("organized_by"):
+        return f"TRIKON is organized by {quick_facts['organized_by']}.", intent
+
+    person_key = detect_person_reference(question)
+    if person_key:
+        profile = person_profiles.get(person_key, {})
+        wants_contacts = intent == "person_contact" or bool(CONTACT_DETAIL_PATTERN.search(question))
+        reply = format_person_response(profile, include_contact_details=wants_contacts)
+        return reply, "person_contact" if wants_contacts else "person_info"
 
     if intent == "first_prize" and quick_facts.get("first_prize"):
         return f"🏆 First prize is {quick_facts['first_prize']}.", intent
@@ -331,23 +590,92 @@ def answer_from_shortcuts(question, state):
         )
 
     if intent == "contact_app" and quick_facts.get("app_contact"):
-        return f"📱 For app issues, contact {quick_facts['app_contact']}.", intent
+        if wants_contact_details:
+            names = split_contact_names(quick_facts["app_contact"])
+            cards = build_contact_detail_cards(names)
+            if cards:
+                return (
+                    "🛠️ For technical issues, contact:\n\n" + "\n\n".join(cards),
+                    intent,
+                )
+        return f"🛠️ For technical issues, contact {quick_facts['app_contact']}.", intent
 
-    if intent == "contact_website" and quick_facts.get("website_contact"):
-        return f"🌐 For website issues, contact {quick_facts['website_contact']}.", intent
+    if intent == "contact_website":
+        if quick_facts.get("website_contact"):
+            if wants_contact_details:
+                names = split_contact_names(quick_facts["website_contact"])
+                cards = build_contact_detail_cards(names)
+                if cards:
+                    return (
+                        "🌐 For website issues, contact:\n\n" + "\n\n".join(cards),
+                        intent,
+                    )
+            return f"🌐 For website issues, contact {quick_facts['website_contact']}.", intent
+
+        # If dedicated website contact is missing, route website issues to technical support.
+        if quick_facts.get("app_contact"):
+            if wants_contact_details:
+                names = split_contact_names(quick_facts["app_contact"])
+                cards = build_contact_detail_cards(names)
+                if cards:
+                    return (
+                        "🌐 Website issues are handled by technical support. Contact:\n\n"
+                        + "\n\n".join(cards),
+                        intent,
+                    )
+            return (
+                f"🌐 Website issues are handled by technical support. "
+                f"Contact {quick_facts['app_contact']}.",
+                intent,
+            )
 
     if intent == "contact_emergency" and quick_facts.get("emergency_contact"):
-        return f"🚨 For emergencies, contact {quick_facts['emergency_contact']}.", intent
-
-    if intent == "contact_general":
-        app_person = quick_facts.get("app_contact") or "the app support member"
-        web_person = quick_facts.get("website_contact") or "the website support member"
-        emergency = quick_facts.get("emergency_contact") or "any event member"
+        if wants_contact_details:
+            names = split_contact_names(quick_facts["emergency_contact"])
+            cards = build_contact_detail_cards(names)
+            if cards:
+                return (
+                    "🚨 For non-technical/general issues or emergencies, contact:\n\n"
+                    + "\n\n".join(cards),
+                    intent,
+                )
         return (
-            f"You can contact {app_person} for app issues, {web_person} for website issues, "
-            f"and {emergency} for emergency or general event help.",
+            f"🚨 For non-technical or general issues (including emergencies), "
+            f"contact {quick_facts['emergency_contact']}.",
             intent,
         )
+
+    if intent == "contact_general":
+        app_person = quick_facts.get("app_contact")
+        web_person = quick_facts.get("website_contact")
+        emergency = quick_facts.get("emergency_contact")
+
+        if wants_contact_details or asks_for_any_member:
+            response_blocks = []
+            if app_person:
+                tech_cards = build_contact_detail_cards(split_contact_names(app_person))
+                if tech_cards:
+                    response_blocks.append(
+                        "🛠️ Technical support contacts:\n\n" + "\n\n".join(tech_cards)
+                    )
+            if emergency:
+                nontech_cards = build_contact_detail_cards(split_contact_names(emergency))
+                if nontech_cards:
+                    response_blocks.append(
+                        "🚨 Non-technical/general support contact:\n\n" + "\n\n".join(nontech_cards)
+                    )
+            if response_blocks:
+                return "\n\n".join(response_blocks), intent
+
+        parts = []
+        if app_person:
+            parts.append(f"For technical issues, contact {app_person}.")
+        if web_person:
+            parts.append(f"For website issues, contact {web_person}.")
+        if emergency:
+            parts.append(f"For non-technical/general issues or emergencies, contact {emergency}.")
+        if parts:
+            return " ".join(parts), intent
 
     return None, intent
 
@@ -397,6 +725,9 @@ def build_clarification_question(state):
     if last_intent in {"contact_app", "contact_website", "contact_emergency", "contact_general"}:
         return "Do you need app support contact, website support contact, or emergency contact?"
 
+    if last_intent in {"person_info", "person_contact"}:
+        return "Do you want role details, direct contact info, or social profile links for that person?"
+
     return "Can you tell me what category you mean: schedule, registration, rules, prizes, teams, or contacts?"
 
 
@@ -409,7 +740,7 @@ def should_ask_clarification_after_rag(answer):
 
 
 def run_initialization():
-    global qa_system, is_initializing, initialization_error, quick_facts
+    global qa_system, is_initializing, initialization_error, quick_facts, person_profiles
 
     logger.info("━" * 60)
     logger.info("🚀 Starting Trix initialization...")
@@ -418,6 +749,7 @@ def run_initialization():
     try:
         logger.info("[1/3] Loading knowledge base document...")
         quick_facts = load_quick_facts(DOCUMENT_PATH)
+        person_profiles = load_people_profiles(DOCUMENT_PATH)
         chunks = load_and_process_document(DOCUMENT_PATH)
 
         logger.info("[2/3] Building vector store (Google Embeddings)...")

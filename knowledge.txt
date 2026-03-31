@@ -96,8 +96,23 @@ TRIKON 3.0 – PRIZES AND BENEFITS
 TRIKON 3.0 – SUPPORT AND ISSUE CONTACT
 ================================================================================
 
-- For any issue Technical issue contact Arush Rastogi or Lomash Chaudhary
-- For emergencies, contact Kartikey Sharma
+- For any technical issue (app, platform, website, or development), contact Lomash Choudhary or Arush Rastogi.
+- For any non-technical issue, general event help, or emergency, contact Kartikey Sharma.
+
+Support Contact Details:
+- Lomash Choudhary (Technical Coordinator)
+  Email: lomashchoudhary9812@gmail.com
+  Instagram: https://www.instagram.com/__lomashchoudhary
+  LinkedIn: https://www.linkedin.com/in/lomash-choudhary
+  GitHub: https://github.com/lomash-choudhary
+
+- Arush Rastogi (Technical Club Member, App Development)
+  Contact details are currently not listed in the official knowledge base.
+
+- Kartikey Sharma (Panel Member)
+  Phone: 8864997581
+  Instagram: https://www.instagram.com/kartikeysharma03
+  LinkedIn: https://www.linkedin.com/in/kartikey-sharma-7195a91b4
 
 ================================================================================
 TRIKON 3.0 – OBJECTIVES
@@ -113,6 +128,7 @@ TRIKON 3.0 – OBJECTIVES
 TRIKON 1.0 - DETAILS	
 ===============================================================================
 - HELD ON April 20-21 , 2024
+- Organized by: INTELLIA, the official technical society of MIET.
 
 
 
@@ -120,6 +136,7 @@ TRIKON 1.0 - DETAILS
 TRIKON 2.0 - DETAILS
 ===============================================================================
 - HELD ON May 3-4 , 2025
+- Organized by: INTELLIA, the official technical society of MIET.
 
 
 
