@@ -195,7 +195,7 @@ This endpoint is safe against concurrent duplicate initialization attempts.
 Expected JSON body:
 
 ```json
-{"question": "What time does registration start?"}
+{ "question": "What time does registration start?" }
 ```
 
 Flow:
@@ -274,7 +274,7 @@ Practical implication:
 2. Open CORS policy: suitable for dev/public API only with caution.
 3. No request rate limit: potential abuse/cost risk.
 4. Initialization cost on every restart: no saved FAISS index on disk.
-5. Prompt text says "Trikon 2025", while current knowledge file describes "Trikon 3.0" events in 2026.
+5. Prompt/event naming is aligned to "Trikon 3.0" for 2026 in the current chatbot configuration.
 6. Secrets appear present in `.env`; keys should not be committed or exposed.
 
 ---

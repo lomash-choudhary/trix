@@ -7,6 +7,7 @@ Type: 28-hour offline hackathon
 Organized by: INTELLIA, the official technical society of MIET
 College: Meerut Institute of Engineering and Technology (MIET), Meerut, Uttar Pradesh, India
 Theme: "Build with AI for a Smarter Tomorrow."
+Official Website: https://www.intelliamiet.in/trikon/trikon2026
 
 Start: 4 April 2026 at 10:00 AM
 End: 5 April 2026 at 2:00 PM
@@ -75,6 +76,43 @@ TRIKON 3.0 – RULES
 - AI tools, APIs, and pre-trained models are allowed but must be documented
 - Teams must show continuous development progress
 - Violations may result in disqualification
+- Team change policy: No team change is allowed after registration. A new member can join only if the team size is less than 5; otherwise, no addition is allowed.
+
+================================================================================
+TRIKON 3.0 – PRIZES AND BENEFITS
+================================================================================
+
+- Total prize pool: 200k
+- Cash prize: 23,500
+- Prize breakdown:
+	- First prize: 11,000
+	- Second prize: 7,500
+	- Third prize: 5,000
+- Free trip for top 3 teams (1st, 2nd, and 3rd)
+- Certificates for all selected teams
+- Goodies and swag for teams who qualify
+
+================================================================================
+TRIKON 3.0 – SUPPORT AND ISSUE CONTACT
+================================================================================
+
+- For any technical issue (app, platform, website, or development), contact Lomash Choudhary or Arush Rastogi.
+- For any non-technical issue, general event help, or emergency, contact Kartikey Sharma.
+
+Support Contact Details:
+- Lomash Choudhary (Technical Coordinator)
+  Email: lomashchoudhary9812@gmail.com
+  Instagram: https://www.instagram.com/__lomashchoudhary
+  LinkedIn: https://www.linkedin.com/in/lomash-choudhary
+  GitHub: https://github.com/lomash-choudhary
+
+- Arush Rastogi (Technical Club Member, App Development)
+  Contact details are currently not listed in the official knowledge base.
+
+- Kartikey Sharma (Panel Member)
+  Phone: 8864997581
+  Instagram: https://www.instagram.com/kartikeysharma03
+  LinkedIn: https://www.linkedin.com/in/kartikey-sharma-7195a91b4
 
 ================================================================================
 TRIKON 3.0 – OBJECTIVES
@@ -86,11 +124,28 @@ TRIKON 3.0 – OBJECTIVES
 - Build a strong developer and innovator community
 - Give practical exposure to teamwork, development, and presentation
 
+===============================================================================
+TRIKON 1.0 - DETAILS	
+===============================================================================
+- HELD ON April 20-21 , 2024
+- Organized by: INTELLIA, the official technical society of MIET.
+
+
+
+===============================================================================
+TRIKON 2.0 - DETAILS
+===============================================================================
+- HELD ON May 3-4 , 2025
+- Organized by: INTELLIA, the official technical society of MIET.
+
+
+
 ================================================================================
 ABOUT INTELLIA
 ================================================================================
 
 INTELLIA is the official technical society of MIET.
+Founded On: 13 March 2023
 Founded to build a strong technology culture and provide students opportunities to learn, build, and innovate beyond the classroom.
 Activities include workshops, technical events, hackathons, and collaborative sessions.
 Internal teams: Technical Club, Management Club, Creative Club, and Junior Members Team.
@@ -100,8 +155,16 @@ ABOUT TRIX
 ================================================================================
 
 TRIX is the official AI chatbot and tech mascot of INTELLIA and the TRIKON hackathon series.
+Founded On: March 2025
 TRIX helps participants with questions about TRIKON, event schedules, rules, team members, and contact info.
+For mentors, jury members, and any detailed authority information, TRIX should direct users to the official website for latest updates.
 Tagline: "Trix won't trick you!"
+
+================================================================================
+TRIX RESPONSE POLICY – OFFICIAL DETAILS
+================================================================================
+
+Official TRIKON 2026 Website: https://www.intelliamiet.in/trikon/trikon2026
 
 ================================================================================
 LEADERSHIP – KHUSHI GUPTA (President, INTELLIA)
@@ -148,6 +211,7 @@ Name: Kartikey Sharma
 Role: Panel Member, INTELLIA
 Branch: CSE AIML, MIET
 Contribution: Planning and technical oversight of society initiatives.
+Phone no : 8864997581
 
 Instagram: https://www.instagram.com/kartikeysharma03
 LinkedIn: https://www.linkedin.com/in/kartikey-sharma-7195a91b4
@@ -206,13 +270,6 @@ Instagram: https://www.instagram.com/pragatitomar_21
 LinkedIn: https://www.linkedin.com/in/pragati-tomar-0b438028b
 Email: pragati.tomar.cseai.2023@miet.ac.in
 
-================================================================================
-MANAGEMENT CLUB – ANUSHKA SINGHAL
-================================================================================
-
-Name: Anushka Singhal
-Role: Management Club Member, INTELLIA
-Area: Outreach and communication with participants.
 
 ================================================================================
 MANAGEMENT CLUB – DEEPIKA SHARMA
@@ -252,13 +309,6 @@ Name: Sanyam Jain
 Role: Creative Club Member, INTELLIA
 Area: Creative concepts and branding.
 
-================================================================================
-CREATIVE CLUB – JAYANT BANSAL
-================================================================================
-
-Name: Jayant Bansal
-Role: Creative Club Member, INTELLIA
-Area: Decorations and visual setup during events.
 
 ================================================================================
 JUNIOR MEMBER – ALICE CHAUDHARY
